@@ -1,7 +1,9 @@
+import java.io.FileNotFoundException;
+
 public class Main {
-    public static void main(String[] args) {
-        Warrior warrior = new Warrior("Dudley");
-        Wizard wizard = new Wizard("Harry");
+    public static void main(String[] args) throws FileNotFoundException {
+        Warrior warrior = new Warrior();
+        Wizard wizard = new Wizard();
 
         System.out.println(warrior);
         System.out.println(wizard);

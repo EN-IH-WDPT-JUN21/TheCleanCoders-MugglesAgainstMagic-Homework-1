@@ -1,10 +1,12 @@
+import java.io.FileNotFoundException;
+
 public class Wizard extends Character implements Attacker {
     // Properties
     private int mana;
     private int intelligence;
 
-    public Wizard(String name) {
-        super(name);
+    public Wizard() throws FileNotFoundException {
+       super();
 
         // hp: random between 50-100 for wizards
         int hp = (int)(Math.random() * 50) + 50;
