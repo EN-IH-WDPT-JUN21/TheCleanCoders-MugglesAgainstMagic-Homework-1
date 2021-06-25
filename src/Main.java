@@ -5,8 +5,12 @@ public class Main {
         Warrior warrior = new Warrior();
         Wizard wizard = new Wizard();
 
+
         System.out.println(warrior);
+        System.out.println(warrior.getId());
         System.out.println(wizard);
+        System.out.println(wizard.getId());
+
 
         System.out.println();
 

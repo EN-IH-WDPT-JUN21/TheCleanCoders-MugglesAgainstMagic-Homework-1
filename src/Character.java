@@ -1,20 +1,23 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public abstract class Character {
     // Properties
     private int id = 0;
+    private static int index = 0; //This works. Had to include a new variable
     private String name;
     private int hp;
     private boolean isAlive = true;
 
     public Character() throws FileNotFoundException { //the names will be random, so we don't need any parameter on this constructor
-        setName(name);
+        setName();
         setAlive(isAlive);
-        id++; //Each time a Character is created, the id increases. It will be unique for each Character.
-            //Still not sure what we'll use it for, though.
+        index++;
+        this.id = index;
+
     }
 
     public void receiveDamage(int damage) {
@@ -23,10 +26,10 @@ public abstract class Character {
 
     // Getters and Setters
     public int getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(int id) {
+    public void setId() {
         this.id = id;
     }
 
@@ -34,26 +37,39 @@ public abstract class Character {
         return name;
     }
 
-    public void setName(String name) throws FileNotFoundException {
+    public void setName() throws FileNotFoundException {
+
+        // "open" both files to be read
         File nameFile = new File("names.txt");
         File surnameFile = new File("surnames.txt");
+
+        //Instantiating scanner class objects for each file
         Scanner nameList = new Scanner(nameFile);
         Scanner surnameList = new Scanner(surnameFile);
-        Random random = new Random();
-        int indexName = random.nextInt(200);
-        int indexSurname = random.nextInt(100);
-        for (int i = 0; i < indexName; i++) {
-            nameList.nextLine();
+
+        // Empty ArrayLists that will be filled with the contents of the files
+        ArrayList<String> namesArray = new ArrayList<String>();
+        ArrayList<String> surnamesArray = new ArrayList<String>();
+
+        //Create an ArrayList of names:
+        while(nameList.hasNextLine()) {
+            namesArray.add(nameList.nextLine());
         }
-        for (int i = 0; i < indexSurname; i++) {
-            surnameList.nextLine();
+        //and the ArrayList of surnames:
+        while(surnameList.hasNextLine()) {
+            surnamesArray.add(surnameList.nextLine());
         }
 
-        name = nameList.nextLine() + " " +(surnameList.nextLine());
-        this.name = name;
+        Random random = new Random();
+        int indexName = random.nextInt(namesArray.size());
+        int indexSurname = random.nextInt(surnamesArray.size());
+
+        //FINALLY, define the name of this Character
+        this.name = namesArray.get(indexName) + " " + surnamesArray.get(indexSurname);
+
+        //Good practice: close scanner buffers
         nameList.close();
         surnameList.close();
-
     }
 
     public int getHp() {
