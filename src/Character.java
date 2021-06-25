@@ -51,6 +51,8 @@ public abstract class Character {
 
         name = nameList.nextLine() + " " +(surnameList.nextLine());
         this.name = name;
+        nameList.close();
+        surnameList.close();
 
     }
 
