@@ -6,7 +6,7 @@ public class Main {
 
         Party party1 = new Party("Gryffindor Alumni", 5);
         Party party2 = new Party("Party2", 5);
-        ImportExport.writePartyToFile(party1.getName().replace(" ", "_"), party1.getAliveCharacters());
+        ImportExport.writePartyToFile(party1.getName().replace(" ", "_") + ".csv", party1.getAliveCharacters());
 
 
         Battle battle1 = new Battle(party1, party2);
