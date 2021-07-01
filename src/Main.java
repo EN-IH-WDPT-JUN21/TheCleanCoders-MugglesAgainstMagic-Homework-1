@@ -6,6 +6,11 @@ public class Main {
 
         Party party1 = new Party("Gryffindor Alumni", 5);
         Party party2 = new Party("Party2", 5);
+
+        if(Navigation.Navigate(party1, party2)){
+            Navigation.Navigate(party1, party2);
+        }
+
         ImportExport.writePartyToFile(party1.getName().replace(" ", "_") + ".csv", party1.getAliveCharacters());
 
 

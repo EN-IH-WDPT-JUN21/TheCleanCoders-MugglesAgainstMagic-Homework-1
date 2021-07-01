@@ -61,7 +61,7 @@ public class Battle {
                 toGraveyard(party1.getAliveCharacters(), combatantId1);
                 toGraveyard(party2.getAliveCharacters(), combatantId2);
 
-            // Combatant1 lose the fight
+                // Combatant1 lose the fight
             } else if(combatant1.getHp() <= 0){
                 winner = combatant2;
                 combatant1.setAlive(false);
@@ -76,7 +76,7 @@ public class Battle {
 
                 System.out.println("THE WINNER IS " + combatant2.getName().toUpperCase());
 
-            // Combatant2 lose the fight
+                // Combatant2 lose the fight
             } else if(combatant2.getHp() <= 0) {
                 winner = combatant1;
                 combatant2.setAlive(false);
@@ -135,5 +135,3 @@ public class Battle {
         return this.party2;
     }
 }
-
-
