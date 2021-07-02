@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public abstract class Character {
+public abstract class Character implements Attacker {
     // Properties
     private int id = 0;
     private static int index = 0; //This works. Had to include a new variable
@@ -12,12 +12,21 @@ public abstract class Character {
     private int hp;
     private boolean isAlive = true;
 
+    //Constructor (overloaded)
+
+    public Character(String name){
+        setName(name);
+        setAlive(isAlive);
+        index++;
+        this.id = index;
+    }
+
+    // Throws a random name
     public Character() throws FileNotFoundException { //the names will be random, so we don't need any parameter on this constructor
         setName();
         setAlive(isAlive);
         index++;
         this.id = index;
-
     }
 
     public void receiveDamage(int damage) {
@@ -27,10 +36,6 @@ public abstract class Character {
     // Getters and Setters
     public int getId() {
         return this.id;
-    }
-
-    public void setId() {
-        this.id = id;
     }
 
     public String getName() {
@@ -48,8 +53,8 @@ public abstract class Character {
         Scanner surnameList = new Scanner(surnameFile);
 
         // Empty ArrayLists that will be filled with the contents of the files
-        ArrayList<String> namesArray = new ArrayList<String>();
-        ArrayList<String> surnamesArray = new ArrayList<String>();
+        ArrayList<String> namesArray = new ArrayList<>();
+        ArrayList<String> surnamesArray = new ArrayList<>();
 
         //Create an ArrayList of names:
         while(nameList.hasNextLine()) {
@@ -72,6 +77,10 @@ public abstract class Character {
         surnameList.close();
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public int getHp() {
         return hp;
     }
@@ -81,7 +90,7 @@ public abstract class Character {
     }
 
     public boolean isAlive() {
-        return isAlive;
+        return this.isAlive;
     }
 
     public void setAlive(boolean alive) {

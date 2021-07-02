@@ -5,8 +5,10 @@ public class Wizard extends Character implements Attacker {
     private int mana;
     private int intelligence;
 
-    public Wizard() throws FileNotFoundException {
-       super();
+    // Constructor (overloaded)
+
+    public Wizard(String name) {
+        super(name);
 
         // hp: random between 50-100 for wizards
         int hp = (int)(Math.random() * 50) + 50;
@@ -18,6 +20,24 @@ public class Wizard extends Character implements Attacker {
         setHp(hp);
         setMana(mana);
         setIntelligence(intelligence);
+        setAlive(true);
+    }
+
+    // Throws a random name
+    public Wizard() throws FileNotFoundException {
+        super();
+
+        // hp: random between 50-100 for wizards
+        int hp = (int)(Math.random() * 50) + 50;
+        // mana: random between 10-50
+        int mana = (int)(Math.random() * 40) + 10;
+        // intelligence: random between 1-50
+        int intelligence = (int)(Math.random() * 49) + 1;
+
+        setHp(hp);
+        setMana(mana);
+        setIntelligence(intelligence);
+        setAlive(true);
     }
 
     @Override
