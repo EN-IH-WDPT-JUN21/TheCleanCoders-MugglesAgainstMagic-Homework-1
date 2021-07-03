@@ -4,14 +4,19 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        Party party1 = new Party("Gryffindor Alumni", 5);
-        Party party2 = new Party("Party2", 5);
+        //Party party1 = new Party("Party1", 5);
+        //Party party2 = new Party("Party2", 5);
 
-        if(Navigation.Navigate(party1, party2)){
-            Navigation.Navigate(party1, party2);
-        }
+        Party party1 = new Party();
+        Party party2 = new Party();
 
-        ImportExport.writePartyToFile(party1.getName().replace(" ", "_") + ".csv", party1.getAliveCharacters());
+
+        //if(Navigation.Navigate(party1, party2)){
+        Navigation.Navigate(party1, party2);
+        // }
+
+
+        /*ImportExport.writePartyToFile("Party1.csv", party1.getAliveCharacters());
 
 
         Battle battle1 = new Battle(party1, party2);
@@ -24,7 +29,7 @@ public class Main {
         battle1.battle(3, 2);
         battle1.battle(0, 0);
 
-        System.out.println();
+        System.out.println();*/
 
 
     }

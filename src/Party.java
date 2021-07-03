@@ -21,6 +21,9 @@ public class Party {
         this.aliveCharacters = this.warParty;
     }
 
+    public Party() throws FileNotFoundException{
+    }
+
     public List<Character> generateRandomParty(int partySize) throws FileNotFoundException {
         //Creates an ArrayList that accepts both Warrior and Wizard objects
         List<Character> party = new ArrayList<>();

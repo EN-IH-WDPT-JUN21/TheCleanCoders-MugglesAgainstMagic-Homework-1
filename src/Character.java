@@ -8,12 +8,20 @@ public abstract class Character implements Attacker {
     // Properties
     private int id = 0;
     private static int index = 0; //This works. Had to include a new variable
-    private String name;
+    protected String name;
     private int hp;
     private boolean isAlive = true;
 
     public Character() throws FileNotFoundException { //the names will be random, so we don't need any parameter on this constructor
         setName();
+        setAlive(isAlive);
+        index++;
+        this.id = index;
+
+    }
+
+    public Character(String name) throws FileNotFoundException { //the names will be manually added
+        this.name = name;
         setAlive(isAlive);
         index++;
         this.id = index;

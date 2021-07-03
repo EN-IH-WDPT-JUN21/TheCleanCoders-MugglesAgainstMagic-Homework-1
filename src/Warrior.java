@@ -5,7 +5,6 @@ public class Warrior extends Character implements Attacker {
     private int stamina;
     private int strength;
 
-
     public Warrior() throws FileNotFoundException {
         super();
 
@@ -19,7 +18,22 @@ public class Warrior extends Character implements Attacker {
         setHp(hp);
         setStamina(stamina);
         setStrength(strength);
-        setAlive(true);
+    }
+
+    public Warrior(String name) throws FileNotFoundException {
+        super();
+        setName(name);
+
+        // hp: random between 100-200 to warriors
+        int hp = (int)(Math.random() * 100) + 100;
+        // stamina: random between 10-50
+        int stamina = (int)(Math.random() * 40) + 10;
+        // strength: random between 1-10
+        int strength = (int)(Math.random() * 9) + 1;
+
+        setHp(hp);
+        setStamina(stamina);
+        setStrength(strength);
     }
 
     @Override
@@ -75,5 +89,6 @@ public class Warrior extends Character implements Attacker {
     public void setStrength(int strength) {
         this.strength = strength;
     }
-}
 
+    public void setName(String name){ super.name = name; }
+}

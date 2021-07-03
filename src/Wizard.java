@@ -18,7 +18,23 @@ public class Wizard extends Character implements Attacker {
         setHp(hp);
         setMana(mana);
         setIntelligence(intelligence);
-        setAlive(true);
+    }
+
+    public Wizard(String name) throws FileNotFoundException {
+        super();
+        setName(name);
+
+
+        // hp: random between 50-100 for wizards
+        int hp = (int)(Math.random() * 50) + 50;
+        // mana: random between 10-50
+        int mana = (int)(Math.random() * 40) + 10;
+        // intelligence: random between 1-50
+        int intelligence = (int)(Math.random() * 49) + 1;
+
+        setHp(hp);
+        setMana(mana);
+        setIntelligence(intelligence);
     }
 
     @Override
@@ -74,4 +90,6 @@ public class Wizard extends Character implements Attacker {
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
+
+    public void setName(String name){ super.name = name; }
 }
