@@ -79,7 +79,7 @@ public class Wizard extends Character implements Attacker {
 
     // Getters and Setters
     public int getMana() {
-        return mana;
+        return this.mana;
     }
 
     public void setMana(int mana) {
@@ -87,7 +87,7 @@ public class Wizard extends Character implements Attacker {
     }
 
     public int getIntelligence() {
-        return intelligence;
+        return this.intelligence;
     }
 
     public void setIntelligence(int intelligence) {

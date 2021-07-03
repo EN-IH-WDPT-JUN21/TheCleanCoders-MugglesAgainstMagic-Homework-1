@@ -40,11 +40,11 @@ public class Graveyard {
     // Getters
 
     public List<String> getGraveyard1() {
-        return graveyard1;
+        return this.graveyard1;
     }
 
     public List<String> getGraveyard2() {
-        return graveyard2;
+        return this.graveyard2;
     }
 
 }

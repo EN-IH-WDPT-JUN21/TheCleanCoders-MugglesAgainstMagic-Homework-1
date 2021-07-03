@@ -77,12 +77,14 @@ public abstract class Character implements Attacker {
         surnameList.close();
     }
 
+    // Getters and setters
+
     public void setName(String name){
         this.name = name;
     }
 
     public int getHp() {
-        return hp;
+        return this.hp;
     }
 
     public void setHp(int hp) {

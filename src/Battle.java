@@ -145,6 +145,6 @@ public class Battle {
     }
 
     public Object getWinner() {
-        return winner;
+        return this.winner;
     }
 }

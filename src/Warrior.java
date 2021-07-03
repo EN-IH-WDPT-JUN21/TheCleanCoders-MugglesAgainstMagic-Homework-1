@@ -79,7 +79,7 @@ public class Warrior extends Character implements Attacker {
 
     // Getters and Setters
     public int getStamina() {
-        return stamina;
+        return this.stamina;
     }
 
     public void setStamina(int stamina) {
@@ -87,7 +87,7 @@ public class Warrior extends Character implements Attacker {
     }
 
     public int getStrength() {
-        return strength;
+        return this.strength;
     }
 
     public void setStrength(int strength) {
