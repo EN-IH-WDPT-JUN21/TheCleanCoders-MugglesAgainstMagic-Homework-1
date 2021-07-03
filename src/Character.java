@@ -8,24 +8,25 @@ public abstract class Character implements Attacker {
     // Properties
     private int id = 0;
     private static int index = 0; //This works. Had to include a new variable
-    protected String name;
+    private String name;
     private int hp;
     private boolean isAlive = true;
 
+    //Constructor (overloaded)
+
+    public Character(String name){
+        setName(name);
+        setAlive(isAlive);
+        index++;
+        this.id = index;
+    }
+
+    // Throws a random name
     public Character() throws FileNotFoundException { //the names will be random, so we don't need any parameter on this constructor
         setName();
         setAlive(isAlive);
         index++;
         this.id = index;
-
-    }
-
-    public Character(String name) throws FileNotFoundException { //the names will be manually added
-        this.name = name;
-        setAlive(isAlive);
-        index++;
-        this.id = index;
-
     }
 
     public void receiveDamage(int damage) {
@@ -35,10 +36,6 @@ public abstract class Character implements Attacker {
     // Getters and Setters
     public int getId() {
         return this.id;
-    }
-
-    public void setId() {
-        this.id = id;
     }
 
     public String getName() {
@@ -56,8 +53,8 @@ public abstract class Character implements Attacker {
         Scanner surnameList = new Scanner(surnameFile);
 
         // Empty ArrayLists that will be filled with the contents of the files
-        ArrayList<String> namesArray = new ArrayList<String>();
-        ArrayList<String> surnamesArray = new ArrayList<String>();
+        ArrayList<String> namesArray = new ArrayList<>();
+        ArrayList<String> surnamesArray = new ArrayList<>();
 
         //Create an ArrayList of names:
         while(nameList.hasNextLine()) {
@@ -80,8 +77,14 @@ public abstract class Character implements Attacker {
         surnameList.close();
     }
 
+    // Getters and setters
+
+    public void setName(String name){
+        this.name = name;
+    }
+
     public int getHp() {
-        return hp;
+        return this.hp;
     }
 
     public void setHp(int hp) {

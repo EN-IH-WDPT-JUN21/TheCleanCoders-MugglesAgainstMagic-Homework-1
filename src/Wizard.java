@@ -5,6 +5,25 @@ public class Wizard extends Character implements Attacker {
     private int mana;
     private int intelligence;
 
+    // Constructor (overloaded)
+
+    public Wizard(String name) {
+        super(name);
+
+        // hp: random between 50-100 for wizards
+        int hp = (int)(Math.random() * 50) + 50;
+        // mana: random between 10-50
+        int mana = (int)(Math.random() * 40) + 10;
+        // intelligence: random between 1-50
+        int intelligence = (int)(Math.random() * 49) + 1;
+
+        setHp(hp);
+        setMana(mana);
+        setIntelligence(intelligence);
+        setAlive(true);
+    }
+
+    // Throws a random name
     public Wizard() throws FileNotFoundException {
         super();
 
@@ -18,23 +37,7 @@ public class Wizard extends Character implements Attacker {
         setHp(hp);
         setMana(mana);
         setIntelligence(intelligence);
-    }
-
-    public Wizard(String name) throws FileNotFoundException {
-        super();
-        setName(name);
-
-
-        // hp: random between 50-100 for wizards
-        int hp = (int)(Math.random() * 50) + 50;
-        // mana: random between 10-50
-        int mana = (int)(Math.random() * 40) + 10;
-        // intelligence: random between 1-50
-        int intelligence = (int)(Math.random() * 49) + 1;
-
-        setHp(hp);
-        setMana(mana);
-        setIntelligence(intelligence);
+        setAlive(true);
     }
 
     @Override
@@ -76,7 +79,7 @@ public class Wizard extends Character implements Attacker {
 
     // Getters and Setters
     public int getMana() {
-        return mana;
+        return this.mana;
     }
 
     public void setMana(int mana) {
@@ -84,12 +87,10 @@ public class Wizard extends Character implements Attacker {
     }
 
     public int getIntelligence() {
-        return intelligence;
+        return this.intelligence;
     }
 
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
-
-    public void setName(String name){ super.name = name; }
 }

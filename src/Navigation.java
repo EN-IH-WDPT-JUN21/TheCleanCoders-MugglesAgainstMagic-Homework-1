@@ -10,9 +10,19 @@ public class Navigation {
     static List<Character> listParty1 = new ArrayList<>();
     static List<Character> listParty2 = new ArrayList<>();
     static int answer;
+    static int comb1;
+    static int comb2;
     final static int MAX_SIZE_TEAM = 10;
 
-    public static boolean Navigate(Party party1, Party party2) throws FileNotFoundException {
+    public static int MainMenuDraw() {
+        System.out.println("Welcome to our game 'Muggle against Magic'\n");
+        System.out.println("1 : Play new game");
+        System.out.println("2 : Exit");
+        //Return size of menu
+        return 2;
+    }
+
+    public static boolean Navigate(Party party1, Party party2) throws IOException {
         answer = TakeMenuIntAnswer(MainMenuDraw());
         switch (answer) {
             case 1: //Create new team
@@ -26,7 +36,15 @@ public class Navigation {
         return true;
     }
 
-    public static boolean TeamMenuNav(Party party1, Party party2) throws FileNotFoundException {
+    public static int TeamMenuDraw() {
+        System.out.println("Team Creator\n");
+        System.out.println("1 : Create new teams");
+        System.out.println("2 : Import team from a csv file");
+        //Return size of menu
+        return 2;
+    }
+
+    public static boolean TeamMenuNav(Party party1, Party party2) throws IOException {
         answer = TakeMenuIntAnswer(TeamMenuDraw());
         switch (answer) {
             case 1: //Create new team
@@ -42,14 +60,15 @@ public class Navigation {
         //break;
     }
 
-    public static void GenerateNewTeamNav(Party party1, Party party2) {
-        party1.setName(TeamNameQDraw(1));
-        party1.setPartySize(TeamSizeQDraw(1));
-        party2.setName(TeamNameQDraw(2));
-        party2.setPartySize(TeamSizeQDraw(2));
+    public static int RandomQMenuDraw() {
+        System.out.println("Generate random characters?");
+        System.out.println("1 : yes");
+        System.out.println("2 : no");
+        //Return size of menu
+        return 2;
     }
 
-    public static void CreateNewTeamNav(Party party1, Party party2) throws FileNotFoundException {
+    public static void CreateNewTeamNav(Party party1, Party party2) throws IOException {
         GenerateNewTeamNav(party1, party2);
         answer = TakeMenuIntAnswer(RandomQMenuDraw());
         switch (answer) {
@@ -58,11 +77,35 @@ public class Navigation {
                 BatlleNav(party1, party2);
                 break;
             case 2: //Generate manual characters
-                GenerateNewCharManualNav(party1, party2);
-
+                GenerateNewCharManualNav(party1, listParty1);
+                GenerateNewCharManualNav(party2, listParty2);
+                ExportCharactersToFileNav(party1, party2);
                 BatlleNav(party1, party2);
                 break;
         }
+    }
+
+    public static void ImportTeamFileMenu() {
+        System.out.println("Please enter the path of the csv file: ");
+        String path = TakeStringAnswer();
+        ImportExport.readPartyFromFile(path);
+    }
+
+    public static String TeamNameQDraw(int i) {
+        System.out.println("Please enter name of the " + i + " team:");
+        return TakeStringAnswer();
+    }
+
+    public static int TeamSizeQDraw(int i) {
+        System.out.println("Please enter size of the " + i + " team:");
+        return TakeSizeAnswer();
+    }
+
+    public static void GenerateNewTeamNav(Party party1, Party party2) {
+        party1.setName(TeamNameQDraw(1));
+        party1.setPartySize(TeamSizeQDraw(1));
+        party2.setName(TeamNameQDraw(2));
+        party2.setPartySize(TeamSizeQDraw(2));
     }
 
     public static void GenerateNewCharRandomNav(Party party1, Party party2) throws FileNotFoundException {
@@ -70,49 +113,51 @@ public class Navigation {
         party2.setWarParty(party2.generateRandomParty(party2.getPartySize()));
     }
 
-    public static void GenerateNewCharManualNav(Party party1, Party party2) throws FileNotFoundException {
-        listParty1.clear();
-        System.out.println("###################################################");
-        System.out.println("Adding new characters for " + party1.getName());
-        System.out.println("###################################################");
-        for (int i=0; i< party1.getPartySize(); i++) {
-            answer = TakeMenuIntAnswer(GenerateNewCharManualMenuDraw());
-            System.out.println("Enter new character's name for " + party1.getName() + "\n");
-            switch (answer) {
-                case 1:
-                    listParty1.add(new Warrior(CharacterNameDraw("Muggle")));
-                    break;
-                case 2:
-                    listParty1.add(new Wizard(CharacterNameDraw("Wizard")));
-                    break;
-            }
-        }
-        party1.setWarParty(listParty1);
-        party1.setAliveCharacters(listParty1);
+    public static int GenerateNewCharManualMenuDraw() {
+        System.out.println("Choose type of the new Character\n");
+        System.out.println("1 : Muggle");
+        System.out.println("2 : Wizard");
+        //Return size of menu
+        return 2;
+    }
 
-        listParty2.clear();
+    public static void GenerateNewCharManualNav(Party party, List<Character> list) throws FileNotFoundException {
+        list.clear();
         System.out.println("###################################################");
-        System.out.println("Adding new characters for " + party2.getName());
+        System.out.println("Adding new characters for " + party.getName());
         System.out.println("###################################################");
-        for (int i=0; i< party2.getPartySize(); i++) {
+        for (int i = 0; i < party.getPartySize(); i++) {
             answer = TakeMenuIntAnswer(GenerateNewCharManualMenuDraw());
-            System.out.println("Enter new character's name for " + party2.getName() + "\n");
+            System.out.println("Enter new character's name for " + party.getName() + "\n");
             switch (answer) {
                 case 1:
-                    listParty2.add(new Warrior(CharacterNameDraw("Muggle")));
+                    list.add(new Warrior(CharacterNameDraw("Muggle")));
                     break;
                 case 2:
-                    listParty2.add(new Wizard(CharacterNameDraw("Wizard")));
+                    list.add(new Wizard(CharacterNameDraw("Wizard")));
                     break;
             }
         }
-        party2.setWarParty(listParty2);
-        party2.setAliveCharacters(listParty2);
+        party.setWarParty(list);
+        party.setAliveCharacters(list);
+    }
+
+    public static String CharacterNameDraw(String name) {
+        System.out.println("Please enter name of the new " + name);
+        return TakeStringAnswer();
+    }
+
+    public static int ExportCharactersToFileMenuDraw() {
+        System.out.println("Would you like to save created teams to CSV file?\n");
+        System.out.println("1 : Yes");
+        System.out.println("2 : No");
+        //Return size of menu
+        return 2;
     }
 
     public static void ExportCharactersToFileNav(Party party1, Party party2) throws IOException {
         answer = TakeMenuIntAnswer(ExportCharactersToFileMenuDraw());
-        switch(answer){
+        switch (answer) {
             case 1:
                 System.out.println("Please enter the path to the csv file for " + party1.getName());
                 String path1 = TakeStringAnswer();
@@ -128,33 +173,39 @@ public class Navigation {
         }
     }
 
-    public static int ExportCharactersToFileMenuDraw() {
-        System.out.println("Would you like to save created teams to CSV file?\n");
-        System.out.println("1 : Yes");
-        System.out.println("2 : No");
-        //Return size of menu
-        return 2;
-    }
-
-    public static int GenerateNewCharManualMenuDraw(){
-        System.out.println("Choose type of the new Character\n");
-        System.out.println("1 : Muggle");
-        System.out.println("2 : Wizard");
-        //Return size of menu
-        return 2;
-    }
-
-    public static void BatlleNav(Party party1, Party party2) throws FileNotFoundException {
+    public static void BatlleNav(Party party1, Party party2) throws IOException {
         Battle battle1 = new Battle(party1, party2);
-        System.out.println(party1);
-        System.out.println(party2);
-        battle1.battle(4, 3);
-        battle1.battle(3, 2);
-        battle1.battle(0, 0);
+        //System.out.println(party1);
+        //System.out.println(party2);
+
+        while (party1.getAliveCharacters().size() > 0 && party2.getAliveCharacters().size() > 0) {
+            CharForDuelDraw(party1, party2, battle1);
+        }
         AfterBattleNav(party1, party2, battle1);
     }
 
-    public static void AfterBattleNav(Party party1, Party party2, Battle battle) throws FileNotFoundException {
+    public static void CharForDuelDraw(Party party1, Party party2, Battle battle) {
+        System.out.println("Characters of " + party1.getName() + '\n' + party1.aliveMembersString() + '\n');
+        System.out.println("Characters of " + party2.getName() + '\n' + party2.aliveMembersString() + '\n');
+        System.out.println("ROUND " + battle.getRoundNumber());
+        System.out.println("Pick character's id for the " + party1.getName());
+        comb1 = TakeCombatId(party1);
+        System.out.println("Pick character's id for the " + party2.getName());
+        comb2 = TakeCombatId(party2);
+        battle.battle(comb1, comb2);
+
+    }
+
+    public static int AfterBattleMenuDraw() {
+        System.out.println("1 : Show graveyard");
+        System.out.println("2 : Start another battle");
+        System.out.println("3 : Play new game");
+        System.out.println("4 : Exit");
+        //Return size of menu
+        return 4;
+    }
+
+    public static void AfterBattleNav(Party party1, Party party2, Battle battle) throws IOException {
         answer = TakeMenuIntAnswer(AfterBattleMenuDraw());
         switch (answer) {
             case 1:
@@ -170,73 +221,10 @@ public class Navigation {
         }
     }
 
-    public static void ShowGraveyardNav(Party party1, Party party2, Battle battle) throws FileNotFoundException {
+    public static void ShowGraveyardNav(Party party1, Party party2, Battle battle) throws IOException {
         System.out.println(battle.graveyard.toString());
         AfterBattleNav(party1, party2, battle);
 
-    }
-
-    public static int MainMenuDraw() {
-        System.out.println("Welcome to our game 'Muggle against Magic'\n");
-        System.out.println("1 : Play new game");
-        System.out.println("2 : Exit");
-        //Return size of menu
-        return 2;
-    }
-
-    public static int TeamMenuDraw() {
-        System.out.println("Team Creator\n");
-        System.out.println("1 : Create new teams");
-        System.out.println("2 : Import team from a csv file");
-        //Return size of menu
-        return 2;
-    }
-
-    public static int RandomQMenuDraw() {
-        System.out.println("Generate random characters?");
-        System.out.println("1 : yes");
-        System.out.println("2 : no");
-        //Return size of menu
-        return 2;
-    }
-
-    public static String TeamNameQDraw(int i) {
-        System.out.println("Please enter name of the " + i + " team:");
-        return TakeStringAnswer();
-    }
-
-    public static String CharacterNameDraw(String name) {
-        System.out.println("Please enter name of the new " + name);
-        return TakeStringAnswer();
-    }
-
-    public static int TeamSizeQDraw(int i) {
-        System.out.println("Please enter size of the " + i + " team:");
-        return TakeSizeAnswer();
-    }
-
-    public static int AfterBattleMenuDraw() {
-        System.out.println("1 : Show graveyard");
-        System.out.println("2 : Start another battle");
-        System.out.println("3 : Play new game");
-        System.out.println("4 : Exit");
-        //Return size of menu
-        return 4;
-    }
-
-    public static void ImportTeamFileMenu() {
-        System.out.println("Please enter the path of the csv file: ");
-        String path = TakeStringAnswer();
-        ImportExport.readPartyFromFile(path);
-    }
-
-    public static void ManualCharacterMenu(Party Team) {
-        System.out.println("PLease define characters for " + Team.getName() + "team");
-        List<Character> CharactersList;
-        /*TODO: Constructor in Character/Wizard/Warrior class which take name and type of character
-        after that:
-        writePartyToFile(Team.getWarParty());
-         */
     }
 
     public static int TakeMenuIntAnswer(int menuSize) {
@@ -286,11 +274,38 @@ public class Navigation {
         String answer = "";
         while (true) {
             try {
-                System.out.print(">");
-                answer = scan.nextLine();
+                do {
+                    if (answer.isBlank()) {
+                        System.out.println("String couldn't be empty");
+                    }
+                    System.out.print(">");
+                    answer = scan.nextLine();
+                }
+                while (answer.isBlank());
                 return answer;
             } catch (InputMismatchException e) {
                 System.out.println("Please enter an String: ");
+                scan.next();
+                continue;
+            }
+        }
+    }
+
+    public static int TakeCombatId(Party party) {
+        int choice = 0;
+        while (true) {
+            try {
+                do {
+                    if (choice < 1 || choice > party.getPartySize()) {
+                        System.out.println("Please enter an integer [1 to " + party.getPartySize() + "]:");
+                    }
+                    System.out.print(">");
+                    choice = scan.nextInt();
+                    scan.nextLine();
+                }
+                while ((choice < 1 || choice > party.getPartySize()));
+                return choice;
+            } catch (InputMismatchException e) {
                 scan.next();
                 continue;
             }

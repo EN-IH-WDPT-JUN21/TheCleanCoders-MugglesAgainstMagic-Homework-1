@@ -5,7 +5,7 @@ public class Battle {
     // Properties
 
     private int roundNumber;
-    private Graveyard graveyard;
+    public Graveyard graveyard;
     private Party party1;
     private Party party2;
 
