@@ -299,14 +299,14 @@ public class Navigation {
         while (true) {
             try {
                 do {
-                    if (choice < 1 || choice > party.getPartySize()) {
-                        System.out.println("Please enter an integer [1 to " + party.getPartySize() + "]:");
+                    if (choice < 0 || choice > party.getPartySize()) {
+                        System.out.println("Please enter an integer [1 to " + party.getAliveCharacters().size() + "]:");
                     }
                     System.out.print(">");
-                    choice = scan.nextInt();
+                    choice = scan.nextInt() - 1;
                     scan.nextLine();
                 }
-                while ((choice < 1 || choice > party.getPartySize()));
+                while ((choice < 0 || choice > party.getAliveCharacters().size()));
                 return choice;
             } catch (InputMismatchException e) {
                 scan.next();
