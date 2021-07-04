@@ -22,6 +22,8 @@ public class Party {
     }
 
     public Party() throws FileNotFoundException{
+        setWarParty(new ArrayList<>());
+        setAliveCharacters(this.warParty);
     }
 
     public List<Character> generateRandomParty(int partySize) throws FileNotFoundException {
