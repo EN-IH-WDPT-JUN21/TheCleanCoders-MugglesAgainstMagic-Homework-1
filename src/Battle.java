@@ -43,8 +43,16 @@ public class Battle {
             System.out.println();
 
             // Stats after being attacked
-            System.out.println(combatant1);
-            System.out.println(combatant2);
+            if (combatant1.getHp() > 0) {
+                System.out.println(combatant1);
+            } else {
+                System.out.println(combatant1.getName() + " died!");
+            }
+            if (combatant2.getHp() > 0) {
+                System.out.println(combatant2);
+            } else {
+                System.out.println(combatant2.getName() + " died!");
+            }
 
             System.out.println();
 
