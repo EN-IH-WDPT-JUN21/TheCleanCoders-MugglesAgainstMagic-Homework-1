@@ -38,8 +38,11 @@ public class ImportExport {
         }
     }
 
-    public static void writePartyToFile(String filePath, List<Character> members) throws IOException {
+    public static void writePartyToFile(Party party) throws IOException {
+        String filePath = party.getName().replace(" ", "_") + ".csv";
+        List<Character> members = party.getAliveCharacters();
         FileWriter writer = new FileWriter(filePath, false);
+
         for (int i = 0; i < members.size(); i++) {
             Character c = members.get(i);
             writer.write(c.getName() + ",");
