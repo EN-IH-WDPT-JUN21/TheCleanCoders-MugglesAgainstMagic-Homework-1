@@ -39,7 +39,7 @@ public class Navigation {
     public static int TeamMenuDraw() {
         System.out.println("Team Creator\n");
         System.out.println("1 : Create new teams");
-        System.out.println("2 : Import team from a csv file");
+        System.out.println("2 : Import teams from CSV files");
         //Return size of menu
         return 2;
     }
@@ -127,7 +127,7 @@ public class Navigation {
     }
 
     public static int GenerateNewCharManualMenuDraw() {
-        System.out.println("Choose type of the new Character\n");
+        System.out.println("Choose type of the new character\n");
         System.out.println("1 : Muggle");
         System.out.println("2 : Wizard");
         //Return size of menu
@@ -197,9 +197,9 @@ public class Navigation {
         System.out.println("Characters of " + party1.getName() + '\n' + party1.aliveMembersString() + '\n');
         System.out.println("Characters of " + party2.getName() + '\n' + party2.aliveMembersString() + '\n');
         System.out.println("ROUND " + battle.getRoundNumber());
-        System.out.println("Pick character's id for the " + party1.getName());
+        System.out.println("Pick character of the " + party1.getName() + " for the next duel");
         comb1 = TakeCombatId(party1);
-        System.out.println("Pick character's id for the " + party2.getName());
+        System.out.println("Pick character of the " + party2.getName() + " for the next duel");
         comb2 = TakeCombatId(party2);
         battle.battle(comb1, comb2);
 
