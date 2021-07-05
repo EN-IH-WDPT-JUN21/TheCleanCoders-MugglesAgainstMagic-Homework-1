@@ -51,8 +51,7 @@ public class Navigation {
                 CreateNewTeamNav(party1, party2);
                 break;
             case 2: //Import team from a csv file
-                ImportTeamFileMenu();
-                BatlleNav(party1, party2);
+                BatlleNav(ImportTeamFileMenu(), ImportOpponentTeamFileMenu());
                 //TODO: What else?
                 break;
         }
@@ -86,10 +85,20 @@ public class Navigation {
         }
     }
 
-    public static void ImportTeamFileMenu() throws FileNotFoundException {
-        System.out.println("Please enter the path of the csv file: ");
+    public static Party ImportTeamFileMenu() throws FileNotFoundException {
+        System.out.println("Please enter the path of the csv file for your team: ");
         String path = TakeStringAnswer();
-        ImportExport.readPartyFromFile(path);
+        Party party = ImportExport.readPartyFromFile(path);
+
+        return party;
+    }
+
+    public static Party ImportOpponentTeamFileMenu() throws FileNotFoundException {
+        System.out.println("Please enter the path of the csv file for opponent team: ");
+        String path = TakeStringAnswer();
+        Party party = ImportExport.readPartyFromFile(path);
+
+        return party;
     }
 
     public static String TeamNameQDraw(int i) {
