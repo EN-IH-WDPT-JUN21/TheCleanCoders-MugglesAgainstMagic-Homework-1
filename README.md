@@ -43,9 +43,9 @@ The objective of the game is to create a party of warriors and wizards to fight 
 
 ### Characters
 
-**Warriors** are strong well armored characters that focus on the attribute strength. Every round a warrior will try to do a “Heavy attack”. The damage of a heavy attack is equals to their strength and every hit will decrease their stamina by 5 points. If he can’t make a heavy attack he will do a “Weak attack”. The damage of a weak attack is the half of the strength (truncate decimals). Every weak attack will recover his stamina by 1.
+**Warriors (Muggles)** are strong well armored characters that focus on the attribute strength. Every round a warrior will try to do a “Heavy attack”. The damage of a heavy attack is equal to their strength and every hit will decrease their stamina by 5 points. If they can’t make a heavy attack they will do a “Weak attack”. The damage of a weak attack is the half of the strength. Every weak attack will recover their stamina by 1.
 
-**Wizards** are the masters of the arcane their main attribute is intelligence. Every round a wizard will try to cast a “Fireball”. The damage of a fireball is equals to his intelligence and every fireball will decrease their mana by 5 points. If he can’t cast a fireball he will do a “Staff hit”. The damage of a staff hit is equals to 2. Every staff hit will recover his mana by 1.
+**Wizards** are the masters of the arcane their main attribute is intelligence. Every round a wizard will try to cast a “Fireball”. The damage of a fireball is equal to their intelligence and every fireball will decrease their mana by 5 points. If they can’t cast a fireball they will do a “Staff hit”. The damage of a staff hit is equals to 2. Every staff hit will recover his mana by 1.
 
 **Stats** are always randomized for the characters:
 - **hp**: random between 100-200 to warriors, 50-100 for wizards
@@ -53,6 +53,14 @@ The objective of the game is to create a party of warriors and wizards to fight 
 - **strength**: random between 1-10
 - **mana**: random between 10-50
 - **intelligence**: random between 1-50
+
+## Menu navigation
+
+To navigate through the menu enter a number set for the desired option and press *Enter*. For teams' and characters' names enter longer strings and press *Enter*.
+
+### Menu flow chart
+
+![menuflowchart.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/menuflowchart.png)
 
 ## Authors
 
