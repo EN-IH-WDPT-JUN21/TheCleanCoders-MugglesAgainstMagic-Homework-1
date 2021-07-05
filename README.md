@@ -54,11 +54,21 @@ The objective of the game is to create a party of warriors and wizards to fight 
 - **mana**: random between 10-50
 - **intelligence**: random between 1-50
 
-## Menu navigation
+### Team creation
+
+When creating new characters you may choose character's type (Warrior/Wizard) and character's name. Stats are always generated randomly. There is also an option of generating random characters for both teams in which case it is no longer possible to choose their type and their names are random combinations of first names found in file names.txt and surnames found in file surnames.txt.
+
+#### Exporting teams to a file
+After creating teams there is an option of saving them to CSV files. Names of the files are generated automatically and any spaces get replaces with an underscore e.g. team "Gryffindor Alumni" gets saved to the file "Gryffindor_Alumni.csv".
+
+#### Importing teams from a file
+There is an option of importing teams from CSV files. Names of the imported teams are generated automatically based on the filename-and any underscores get replaced with empty spaces e.g. from file "Gryffindor_Alumni.csv" a team "Gryffindor Alumni" gets imported.
+
+### Menu navigation
 
 To navigate through the menu enter a number set for the desired option and press *Enter*. For teams' and characters' names enter longer strings and press *Enter*.
 
-### Menu flow chart
+#### Menu flow chart
 
 ![menuflowchart.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/menuflowchart.png)
 
