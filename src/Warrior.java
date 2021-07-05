@@ -40,6 +40,13 @@ public class Warrior extends Character implements Attacker {
         setAlive(true);
     }
 
+    public Warrior(String name, int hp, int stamina, int strength) {
+        super(name);
+        setHp(hp);
+        setStamina(stamina);
+        setStrength(strength);
+    }
+
     @Override
     public int attack() {
         int damage;

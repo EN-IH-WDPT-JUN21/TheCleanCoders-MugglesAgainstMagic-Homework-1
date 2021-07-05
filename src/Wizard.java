@@ -40,6 +40,13 @@ public class Wizard extends Character implements Attacker {
         setAlive(true);
     }
 
+    public Wizard(String name, int hp, int mana, int intelligence) {
+        super(name);
+        setHp(hp);
+        setMana(mana);
+        setIntelligence(intelligence);
+    }
+
     @Override
     public int attack() {
         int damage;
