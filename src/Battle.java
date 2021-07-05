@@ -20,12 +20,13 @@ public class Battle {
 
     // Methods
 
-    public void battle(int combatantId1, int combatantId2) {
+    public void battle(int combatantId1, int combatantId2) throws InterruptedException {
         //Selected combatants
         Character combatant1 = party1.getAliveCharacters().get(combatantId1);
         Character combatant2 = party2.getAliveCharacters().get(combatantId2);
 
         Object winner = new Object();
+        boolean battleEndedInATie = false;
 
         System.out.println(combatant1.getName().toUpperCase() + " vs. " + combatant2.getName().toUpperCase());
         System.out.println();
@@ -49,7 +50,7 @@ public class Battle {
 
             // The combat could end in a tie
             if(combatant1.getHp() <= 0 && combatant2.getHp() <= 0) {
-                winner = null;
+                battleEndedInATie = true;
                 System.out.println("None of the combatants survived.");
 
                 combatant1.setAlive(false);
@@ -94,8 +95,12 @@ public class Battle {
             }
 
             setRoundNumber(getRoundNumber() + 1);
+            Thread.sleep(300);
         }
-        System.out.println(winner);
+
+        if (!battleEndedInATie) {
+            System.out.println(winner);
+        }
         System.out.println();
 
     }
