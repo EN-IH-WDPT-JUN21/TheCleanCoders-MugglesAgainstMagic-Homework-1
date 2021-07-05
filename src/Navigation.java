@@ -201,11 +201,10 @@ public class Navigation {
 
     public static int AfterBattleMenuDraw() {
         System.out.println("1 : Show graveyard");
-        System.out.println("2 : Start another battle");
-        System.out.println("3 : Play new game");
-        System.out.println("4 : Exit");
+        System.out.println("2 : Play new game");
+        System.out.println("3 : Exit");
         //Return size of menu
-        return 4;
+        return 3;
     }
 
     public static void AfterBattleNav(Party party1, Party party2, Battle battle) throws IOException {
@@ -215,11 +214,9 @@ public class Navigation {
                 ShowGraveyardNav(party1, party2, battle);
                 break;
             case 2:
-                BatlleNav(party1, party2); //TODO: something wrong, maybe reset battle in constructor? or don't change party1, party2 during battle?
-            case 3:
                 TeamMenuNav(party1, party2);
                 break;
-            case 4: //exit game
+            case 3: //exit game
 
         }
     }
