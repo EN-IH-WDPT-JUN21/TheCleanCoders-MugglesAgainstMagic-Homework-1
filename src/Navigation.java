@@ -12,10 +12,19 @@ public class Navigation {
     static int answer;
     static int comb1;
     static int comb2;
-    final static int MAX_SIZE_TEAM = 10;
+    final static int MAX_SIZE_TEAM = 7;
 
     public static int MainMenuDraw() {
-        System.out.println("Welcome to our game 'Muggle against Magic'\n");
+        Lines.printUpper();
+        Lines.printEmpty(1);
+        System.out.println("Welcome to our game MUGGLES AGAINST MAGIC");
+        Lines.printEmpty(1);
+        System.out.println("      Created by TheCleanCoders");
+        Lines.printEmpty(2);
+        System.out.println("For the best experience resize your terminal so it fits 15 lines");
+        Lines.printEmpty(1);
+        System.out.println("Main menu");
+        Lines.printEmpty(1);
         System.out.println("1 : Play new game");
         System.out.println("2 : Exit");
         //Return size of menu
@@ -37,6 +46,9 @@ public class Navigation {
     }
 
     public static int TeamMenuDraw() {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(6);
         System.out.println("Team Creator\n");
         System.out.println("1 : Create new teams");
         System.out.println("2 : Import teams from CSV files");
@@ -60,9 +72,12 @@ public class Navigation {
     }
 
     public static int RandomQMenuDraw() {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(7);
         System.out.println("Generate random characters?");
-        System.out.println("1 : yes");
-        System.out.println("2 : no");
+        System.out.println("1 : Yes");
+        System.out.println("2 : No");
         //Return size of menu
         return 2;
     }
@@ -86,7 +101,10 @@ public class Navigation {
     }
 
     public static Party ImportTeamFileMenu() throws FileNotFoundException {
-        System.out.println("Please enter the path of the csv file for your team: ");
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(8);
+        System.out.println("\nPlease enter the path of the CSV file for 1 team: ");
         String path = TakeStringAnswer();
         Party party = ImportExport.readPartyFromFile(path);
 
@@ -94,7 +112,10 @@ public class Navigation {
     }
 
     public static Party ImportOpponentTeamFileMenu() throws FileNotFoundException {
-        System.out.println("Please enter the path of the csv file for opponent team: ");
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(8);
+        System.out.println("\nPlease enter the path of the CSV file for 2 team: ");
         String path = TakeStringAnswer();
         Party party = ImportExport.readPartyFromFile(path);
 
@@ -102,12 +123,18 @@ public class Navigation {
     }
 
     public static String TeamNameQDraw(int i) {
-        System.out.println("Please enter name of the " + i + " team:");
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(8);
+        System.out.println("\nPlease enter name of the " + i + " team:");
         return TakeStringAnswer();
     }
 
     public static int TeamSizeQDraw(int i) {
-        System.out.println("Please enter size of the " + i + " team:");
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(8);
+        System.out.println("\nPlease enter size of the " + i + " team:");
         return TakeSizeAnswer();
     }
 
@@ -136,9 +163,11 @@ public class Navigation {
 
     public static void GenerateNewCharManualNav(Party party, List<Character> list) throws FileNotFoundException {
         list.clear();
-        System.out.println("###################################################");
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(4);
         System.out.println("Adding new characters for " + party.getName());
-        System.out.println("###################################################");
+        Lines.printEmpty(1);
         for (int i = 0; i < party.getPartySize(); i++) {
             answer = TakeMenuIntAnswer(GenerateNewCharManualMenuDraw());
             System.out.println("Enter new character's name for " + party.getName() + "\n");
@@ -156,11 +185,17 @@ public class Navigation {
     }
 
     public static String CharacterNameDraw(String name) {
-        System.out.println("Please enter name of the new " + name);
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(8);
+        System.out.println("\nPlease enter name of the new " + name);
         return TakeStringAnswer();
     }
 
     public static int ExportCharactersToFileMenuDraw() {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(6);
         System.out.println("Would you like to save created teams to CSV file?\n");
         System.out.println("1 : Yes");
         System.out.println("2 : No");
@@ -184,25 +219,60 @@ public class Navigation {
 
     public static void BatlleNav(Party party1, Party party2) throws IOException {
         Battle battle1 = new Battle(party1, party2);
-        //System.out.println(party1);
-        //System.out.println(party2);
 
         while (party1.getAliveCharacters().size() > 0 && party2.getAliveCharacters().size() > 0) {
             CharForDuelDraw(party1, party2, battle1);
+            AfterDuelNav(party1, party2, battle1);
         }
+        String winner = "";
+        if (party1.getAliveCharacters().size() == 0 && party2.getAliveCharacters().size() == 0) {
+            System.out.println("It's a tie! All characters died....");
+        } else if (party1.getAliveCharacters().size() == 0) {
+            winner = party1.getName();
+        } else if (party2.getAliveCharacters().size() == 0) {
+            winner = party2.getName();
+        }
+        if (!winner.equals("")) {
+            System.out.println(winner + " WINS!!!\n");
+        }
+
         AfterBattleNav(party1, party2, battle1);
     }
 
+    public static void AfterDuelNav(Party party1, Party party2, Battle battle) throws IOException {
+        answer = TakeMenuIntAnswer(AfterDuelMenuDraw());
+        switch (answer) {
+            case 1:
+                return;
+        }
+    }
+
+    public static int AfterDuelMenuDraw() {
+        System.out.println("1 : Continue");
+        //Return size of menu
+        return 1;
+    }
+
     public static void CharForDuelDraw(Party party1, Party party2, Battle battle) {
-        System.out.println("Characters of " + party1.getName() + '\n' + party1.aliveMembersString() + '\n');
-        System.out.println("Characters of " + party2.getName() + '\n' + party2.aliveMembersString() + '\n');
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(1);
+        System.out.println("Characters of " + party1.getName() + '\n' + party1.aliveMembersString());
+        Lines.printEmpty(7 - party1.getAliveCharacters().size());
         System.out.println("ROUND " + battle.getRoundNumber());
         System.out.println("Pick character of the " + party1.getName() + " for the next duel");
         comb1 = TakeCombatId(party1);
+
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(1);
+        System.out.println("Characters of " + party2.getName() + '\n' + party2.aliveMembersString());
+        Lines.printEmpty(7 - party2.getAliveCharacters().size());
+        System.out.println("ROUND " + battle.getRoundNumber());
         System.out.println("Pick character of the " + party2.getName() + " for the next duel");
         comb2 = TakeCombatId(party2);
-        battle.battle(comb1, comb2);
 
+        battle.battle(comb1, comb2);
     }
 
     public static int AfterBattleMenuDraw() {
@@ -228,9 +298,12 @@ public class Navigation {
     }
 
     public static void ShowGraveyardNav(Party party1, Party party2, Battle battle) throws IOException {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(2);
         System.out.println(battle.graveyard.toString());
+        Lines.printEmpty(1);
         AfterBattleNav(party1, party2, battle);
-
     }
 
     public static int TakeMenuIntAnswer(int menuSize) {
@@ -239,9 +312,9 @@ public class Navigation {
             try {
                 do {
                     if (choice < 1 || choice > menuSize) {
-                        System.out.println("Please enter an integer [1 to " + menuSize + "]:");
+                        System.out.println("\nPlease enter an integer [1 to " + menuSize + "]:");
                     }
-                    System.out.print(">");
+                    System.out.print("> ");
                     choice = scan.nextInt();
                     scan.nextLine();
                 }
@@ -260,9 +333,9 @@ public class Navigation {
             try {
                 do {
                     if (choice < 1 || choice > MAX_SIZE_TEAM) {
-                        System.out.println("Please enter an integer [1 to " + MAX_SIZE_TEAM + "]:");
+                        System.out.println("\nPlease enter an integer [1 to " + MAX_SIZE_TEAM + "]:");
                     }
-                    System.out.print(">");
+                    System.out.print("> ");
                     choice = scan.nextInt();
                     scan.nextLine();
                 }
@@ -282,15 +355,15 @@ public class Navigation {
             try {
                 do {
                     if (answer.isBlank()) {
-                        System.out.println("String couldn't be empty");
+                        System.out.println("\nStrings can't be empty");
                     }
-                    System.out.print(">");
+                    System.out.print("> ");
                     answer = scan.nextLine();
                 }
                 while (answer.isBlank());
                 return answer;
             } catch (InputMismatchException e) {
-                System.out.println("Please enter an String: ");
+                System.out.println("\nPlease enter a String: ");
                 scan.next();
                 continue;
             }
@@ -303,9 +376,9 @@ public class Navigation {
             try {
                 do {
                     if (choice < 0 || choice > party.getPartySize()) {
-                        System.out.println("Please enter an integer [1 to " + party.getAliveCharacters().size() + "]:");
+                        System.out.println("\nPlease enter an integer [1 to " + party.getAliveCharacters().size() + "]:");
                     }
-                    System.out.print(">");
+                    System.out.print("> ");
                     choice = scan.nextInt() - 1;
                     scan.nextLine();
                 }
