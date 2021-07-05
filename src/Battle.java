@@ -97,7 +97,6 @@ public class Battle {
         }
         System.out.println(winner);
         System.out.println();
-        System.out.println(graveyard.toString());
 
     }
 
