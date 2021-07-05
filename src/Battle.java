@@ -12,7 +12,7 @@ public class Battle {
     // Constructor
 
     public Battle(Party party1, Party party2) {
-        setRoundNumber(0);
+        setRoundNumber(1);
         setParty1(party1);
         setParty2(party2);
         this.graveyard = new Graveyard();
