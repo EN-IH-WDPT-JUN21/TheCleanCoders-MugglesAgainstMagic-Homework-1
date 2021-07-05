@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ImportExport {
 
-    public static void readPartyFromFile (String filePath) {
+    public static void readPartyFromFile(String filePath) {
         String fileName = "Party2.csv";
         File file = new File(fileName);
         List<List<String>> lines = new ArrayList<>();
@@ -38,13 +38,13 @@ public class ImportExport {
         }
     }
 
-    public static void writePartyToFile (String filePath, List<Character> members) throws IOException {
+    public static void writePartyToFile(String filePath, List<Character> members) throws IOException {
         FileWriter writer = new FileWriter(filePath, false);
-        for (int i = 0; i < members.size(); i++){
+        for (int i = 0; i < members.size(); i++) {
             Character c = members.get(i);
-            writer.write(c.getName() + "," );
-            writer.write(c.getHp() + "," );
-            if(c instanceof Wizard){
+            writer.write(c.getName() + ",");
+            writer.write(c.getHp() + ",");
+            if (c instanceof Wizard) {
                 writer.write(((Wizard) c).getMana() + ",");
                 writer.write(((Wizard) c).getIntelligence() + ",");
 
