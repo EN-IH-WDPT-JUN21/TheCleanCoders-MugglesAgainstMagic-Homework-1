@@ -74,6 +74,7 @@ public class Navigation {
         switch (answer) {
             case 1: //Generate random characters
                 GenerateNewCharRandomNav(party1, party2);
+                ExportCharactersToFileNav(party1, party2);
                 BatlleNav(party1, party2);
                 break;
             case 2: //Generate manual characters
@@ -85,7 +86,7 @@ public class Navigation {
         }
     }
 
-    public static void ImportTeamFileMenu() {
+    public static void ImportTeamFileMenu() throws FileNotFoundException {
         System.out.println("Please enter the path of the csv file: ");
         String path = TakeStringAnswer();
         ImportExport.readPartyFromFile(path);
