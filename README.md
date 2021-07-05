@@ -78,6 +78,7 @@ To navigate through the menu enter a number set for the desired option and press
 ![screenshot2.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot2.png)
 ![screenshot3.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot3.png)
 ![screenshot4.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot4.png)
+![screenshot5.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot5.png)
 
 
 ## Authors
