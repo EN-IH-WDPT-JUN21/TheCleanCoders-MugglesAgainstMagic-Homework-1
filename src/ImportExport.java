@@ -45,7 +45,7 @@ public class ImportExport {
 
         for (int i = 0; i < members.size(); i++) {
             Character c = members.get(i);
-            writer.write(c.getName() + ",");
+            writer.write(c.getName().replace(" ", "_") + ",");
             writer.write(c.getHp() + ",");
             if (c instanceof Wizard) {
                 writer.write("Wizard,");
