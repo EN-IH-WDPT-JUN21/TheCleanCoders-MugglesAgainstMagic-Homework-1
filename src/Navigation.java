@@ -394,14 +394,14 @@ public class Navigation {
         while (true) {
             try {
                 do {
-                    if (choice < 0 || choice > party.getPartySize()) {
+                    if (choice < 0 || choice > (party.getAliveCharacters().size()-1)) {
                         System.out.println("\nPlease enter an integer [1 to " + party.getAliveCharacters().size() + "]:");
                     }
                     System.out.print("> ");
                     choice = scan.nextInt() - 1;
                     scan.nextLine();
                 }
-                while ((choice < 0 || choice > party.getAliveCharacters().size()));
+                while ((choice < 0 || choice > (party.getAliveCharacters().size()-1)));
                 return choice;
             } catch (InputMismatchException e) {
                 scan.next();
