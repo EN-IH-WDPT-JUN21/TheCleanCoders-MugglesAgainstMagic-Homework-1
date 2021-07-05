@@ -233,9 +233,9 @@ public class Navigation {
         if (party1.getAliveCharacters().size() == 0 && party2.getAliveCharacters().size() == 0) {
             System.out.println("It's a tie! All characters died....");
         } else if (party1.getAliveCharacters().size() == 0) {
-            winner = party1.getName();
-        } else if (party2.getAliveCharacters().size() == 0) {
             winner = party2.getName();
+        } else if (party2.getAliveCharacters().size() == 0) {
+            winner = party1.getName();
         }
         if (!winner.equals("")) {
             System.out.println(winner + " WINS!!!\n");
