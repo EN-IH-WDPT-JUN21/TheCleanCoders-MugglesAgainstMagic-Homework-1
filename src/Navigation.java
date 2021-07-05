@@ -225,6 +225,11 @@ public class Navigation {
             AfterDuelNav(party1, party2, battle1);
         }
         String winner = "";
+
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(5);
+
         if (party1.getAliveCharacters().size() == 0 && party2.getAliveCharacters().size() == 0) {
             System.out.println("It's a tie! All characters died....");
         } else if (party1.getAliveCharacters().size() == 0) {
