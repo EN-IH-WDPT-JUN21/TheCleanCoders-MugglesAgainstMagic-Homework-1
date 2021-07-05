@@ -31,7 +31,7 @@ public class Navigation {
         return 2;
     }
 
-    public static boolean Navigate(Party party1, Party party2) throws IOException {
+    public static boolean Navigate(Party party1, Party party2) throws IOException, InterruptedException {
         answer = TakeMenuIntAnswer(MainMenuDraw());
         switch (answer) {
             case 1: //Create new team
@@ -56,7 +56,7 @@ public class Navigation {
         return 2;
     }
 
-    public static boolean TeamMenuNav(Party party1, Party party2) throws IOException {
+    public static boolean TeamMenuNav(Party party1, Party party2) throws IOException, InterruptedException {
         answer = TakeMenuIntAnswer(TeamMenuDraw());
         switch (answer) {
             case 1: //Create new team
@@ -82,7 +82,7 @@ public class Navigation {
         return 2;
     }
 
-    public static void CreateNewTeamNav(Party party1, Party party2) throws IOException {
+    public static void CreateNewTeamNav(Party party1, Party party2) throws IOException, InterruptedException {
         GenerateNewTeamNav(party1, party2);
         answer = TakeMenuIntAnswer(RandomQMenuDraw());
         switch (answer) {
@@ -203,7 +203,7 @@ public class Navigation {
         return 2;
     }
 
-    public static void ExportCharactersToFileNav(Party party1, Party party2) throws IOException {
+    public static void ExportCharactersToFileNav(Party party1, Party party2) throws IOException, InterruptedException {
         answer = TakeMenuIntAnswer(ExportCharactersToFileMenuDraw());
         switch (answer) {
             case 1:
@@ -217,7 +217,7 @@ public class Navigation {
         }
     }
 
-    public static void BatlleNav(Party party1, Party party2) throws IOException {
+    public static void BatlleNav(Party party1, Party party2) throws IOException, InterruptedException {
         Battle battle1 = new Battle(party1, party2);
 
         while (party1.getAliveCharacters().size() > 0 && party2.getAliveCharacters().size() > 0) {
@@ -253,7 +253,7 @@ public class Navigation {
         return 1;
     }
 
-    public static void CharForDuelDraw(Party party1, Party party2, Battle battle) {
+    public static void CharForDuelDraw(Party party1, Party party2, Battle battle) throws InterruptedException {
         Lines.printUpper();
         Lines.printGameName();
         Lines.printEmpty(1);
@@ -283,7 +283,7 @@ public class Navigation {
         return 3;
     }
 
-    public static void AfterBattleNav(Party party1, Party party2, Battle battle) throws IOException {
+    public static void AfterBattleNav(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
         answer = TakeMenuIntAnswer(AfterBattleMenuDraw());
         switch (answer) {
             case 1:
@@ -297,7 +297,7 @@ public class Navigation {
         }
     }
 
-    public static void ShowGraveyardNav(Party party1, Party party2, Battle battle) throws IOException {
+    public static void ShowGraveyardNav(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
         Lines.printUpper();
         Lines.printGameName();
         Lines.printEmpty(2);
