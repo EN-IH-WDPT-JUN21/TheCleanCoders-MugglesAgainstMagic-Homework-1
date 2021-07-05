@@ -72,6 +72,14 @@ To navigate through the menu enter a number set for the desired option and press
 
 ![menuflowchart.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/menuflowchart.png)
 
+## Screenshots
+
+![screenshot1.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot1.png)
+![screenshot2.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot2.png)
+![screenshot3.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot3.png)
+![screenshot4.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/katBranch/img/screenshot4.png)
+
+
 ## Authors
 
 **TheCleanCoders**: Vitaliano Costa, Mara Fernández, Joao Lopes, Natalia Norberciak, Katarzyna Wąsik.
