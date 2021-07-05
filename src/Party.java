@@ -14,11 +14,10 @@ public class Party {
 
     //Constructor
 
-    public Party(String name, int partySize) throws FileNotFoundException{
+    public Party(String name, int partySize) throws FileNotFoundException {
         setName(name);
         setPartySize(partySize);
-        this.warParty = generateRandomParty(partySize);
-        this.aliveCharacters = this.warParty;
+        setAliveCharacters();
     }
 
     public List<Character> generateRandomParty(int partySize) throws FileNotFoundException {
@@ -37,7 +36,9 @@ public class Party {
             }
         }
 
-        return party;
+        this.warParty = party;
+
+        return warParty;
     }
 
     public static Character generatePartyElement() throws FileNotFoundException {
@@ -74,12 +75,8 @@ public class Party {
         this.partySize = partySize;
     }
 
-    public void setWarParty(List<Character> warParty) {
-        this.warParty = warParty;
-    }
-
-    public void setAliveCharacters(List<Character> aliveCharacters) {
-        this.aliveCharacters = aliveCharacters;
+    public void setAliveCharacters() throws FileNotFoundException {
+        this.aliveCharacters = new ArrayList<>(generateRandomParty(partySize));
     }
 
     public void updateAliveCharacters(int originalCharacterId, Character stillAliveCharacter){
