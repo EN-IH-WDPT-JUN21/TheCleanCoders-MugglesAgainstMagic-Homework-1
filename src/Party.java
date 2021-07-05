@@ -33,13 +33,12 @@ public class Party {
         //The following populates the ArrayList with as random elements as the party size
         for (int i = 0; i < partySize; i++) {
             party.add(generatePartyElement());
-            if(i == partySize){
-                /*Prints the stats of each one of the elements of the warParty Array
-                System.out.println("War Party elements are:");
-                for (Character element : party) {
-                    System.out.println(element);
-                }*/
-                return party;
+
+            // If the name generated is already in the party, add Jr at the end
+            for(int j = 0; j < i; j++) {
+                if(party.get(i).getName().equals(party.get(j).getName())){
+                    party.get(i).setName(party.get(i).getName() + " Jr");
+                }
             }
         }
 

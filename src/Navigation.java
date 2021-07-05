@@ -173,10 +173,24 @@ public class Navigation {
             System.out.println("Enter new character's name for " + party.getName() + "\n");
             switch (answer) {
                 case 1:
-                    list.add(new Warrior(characterNameDraw("Muggle")));
+                    String nameOfWarrior = characterNameDraw("Muggle");
+                    Warrior warrior = new Warrior(nameOfWarrior);
+                    for(int j = 0; j < list.size(); j++) {
+                        if(list.get(j).getName().equals(warrior.getName())){
+                            warrior.setName(warrior.getName() + " Jr");
+                        }
+                    }
+                    list.add(warrior);
                     break;
                 case 2:
-                    list.add(new Wizard(characterNameDraw("Wizard")));
+                    String nameOfWizard = characterNameDraw("Wizard");
+                    Wizard wizard = new Wizard(nameOfWizard);
+                    for(int j = 0; j < list.size(); j++) {
+                        if(list.get(j).getName().equals(wizard.getName())){
+                            wizard.setName(wizard.getName() + " Jr");
+                        }
+                    }
+                    list.add(wizard);
                     break;
             }
         }
