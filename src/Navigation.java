@@ -163,11 +163,7 @@ public class Navigation {
         answer = TakeMenuIntAnswer(ExportCharactersToFileMenuDraw());
         switch (answer) {
             case 1:
-                System.out.println("Please enter the path to the csv file for " + party1.getName());
-                String path1 = TakeStringAnswer();
                 ImportExport.writePartyToFile(party1);
-                System.out.println("Please enter the path to the csv file for " + party2.getName());
-                String path2 = TakeStringAnswer();
                 ImportExport.writePartyToFile(party2);
                 BatlleNav(party1, party2);
                 break;
