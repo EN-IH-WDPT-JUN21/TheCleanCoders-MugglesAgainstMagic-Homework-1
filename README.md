@@ -56,7 +56,7 @@ The objective of the game is to create a party of warriors and wizards to fight 
 
 ### Team creation
 
-When creating new characters you may choose character's type (Warrior/Wizard) and character's name. Stats are always generated randomly. There is also an option of generating random characters for both teams in which case it is no longer possible to choose their type and their names are random combinations of first names found in file names.txt and surnames found in file surnames.txt.
+When creating new characters you may choose character's type (Warrior/Wizard) and character's name. Stats are always generated randomly. There is also an option of generating random characters for both teams in which case it is no longer possible to choose their type and their names are random combinations of first names found in file names.txt and surnames found in file surnames.txt, however if there is aready a character with the same name in the teamt, the suffix "Jr" gets added to the new character's name.
 
 #### Exporting teams to a file
 After creating teams there is an option of saving them to CSV files. Names of the files are generated automatically and any spaces get replaces with an underscore e.g. team "Gryffindor Alumni" gets saved to the file "Gryffindor_Alumni.csv".
