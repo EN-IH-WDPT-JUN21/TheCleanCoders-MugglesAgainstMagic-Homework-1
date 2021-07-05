@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,8 +64,7 @@ public class Navigation {
                 createNewTeamNav(party1, party2);
                 break;
             case 2: //Import team from a csv file
-                battleNav(importTeamFileMenu(), importOpponentTeamFileMenu());
-                //TODO: What else?
+                importFileMenu();
                 break;
         }
         return false;
@@ -100,26 +100,42 @@ public class Navigation {
         }
     }
 
-    public static Party importTeamFileMenu() throws FileNotFoundException {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(8);
-        System.out.println("\nPlease enter the path of the CSV file for 1 team: ");
-        String path = takeStringAnswer();
-        Party party = ImportExport.readPartyFromFile(path);
-
-        return party;
+    public static void importFileMenu() throws IOException, InterruptedException {
+        Party party1 = null;
+        Party party2 = null;
+        while(party1 == null) {
+            party1 = importTeamFileMenu(1);
+        }
+        while(party2 == null) {
+            party2 = importTeamFileMenu(2);
+        }
+        battleNav(party1, party2);
     }
 
-    public static Party importOpponentTeamFileMenu() throws FileNotFoundException {
+    public static Party importTeamFileMenu(int teamNumber) throws IOException, InterruptedException {
         Lines.printUpper();
         Lines.printGameName();
         Lines.printEmpty(8);
-        System.out.println("\nPlease enter the path of the CSV file for 2 team: ");
+        System.out.println("\nPlease enter the path of the CSV file for " + teamNumber + " team: ");
         String path = takeStringAnswer();
-        Party party = ImportExport.readPartyFromFile(path);
-
-        return party;
+        File file = new File(path);
+        while (!file.exists()) {
+            Lines.printUpper();
+            Lines.printGameName();
+            Lines.printEmpty(6);
+            System.out.println("Specified file does not exist.\n");
+            System.out.println("1 : Try again");
+            System.out.println("2 : Return to the main menu");
+            answer = takeMenuIntAnswer(2);
+            switch (answer) {
+                case 1:
+                    return null;
+                case 2:
+                    navigate(new Party(), new Party());
+                    break;
+            }
+        }
+        return ImportExport.readPartyFromFile(path);
     }
 
     public static String teamNameQDraw(int i) {
@@ -175,8 +191,8 @@ public class Navigation {
                 case 1:
                     String nameOfWarrior = characterNameDraw("Muggle");
                     Warrior warrior = new Warrior(nameOfWarrior);
-                    for(int j = 0; j < list.size(); j++) {
-                        if(list.get(j).getName().equals(warrior.getName())){
+                    for (int j = 0; j < list.size(); j++) {
+                        if (list.get(j).getName().equals(warrior.getName())) {
                             warrior.setName(warrior.getName() + " Jr");
                         }
                     }
@@ -185,8 +201,8 @@ public class Navigation {
                 case 2:
                     String nameOfWizard = characterNameDraw("Wizard");
                     Wizard wizard = new Wizard(nameOfWizard);
-                    for(int j = 0; j < list.size(); j++) {
-                        if(list.get(j).getName().equals(wizard.getName())){
+                    for (int j = 0; j < list.size(); j++) {
+                        if (list.get(j).getName().equals(wizard.getName())) {
                             wizard.setName(wizard.getName() + " Jr");
                         }
                     }
@@ -394,14 +410,14 @@ public class Navigation {
         while (true) {
             try {
                 do {
-                    if (choice < 0 || choice > (party.getAliveCharacters().size()-1)) {
+                    if (choice < 0 || choice > (party.getAliveCharacters().size() - 1)) {
                         System.out.println("\nPlease enter an integer [1 to " + party.getAliveCharacters().size() + "]:");
                     }
                     System.out.print("> ");
                     choice = scan.nextInt() - 1;
                     scan.nextLine();
                 }
-                while ((choice < 0 || choice > (party.getAliveCharacters().size()-1)));
+                while ((choice < 0 || choice > (party.getAliveCharacters().size() - 1)));
                 return choice;
             } catch (InputMismatchException e) {
                 scan.next();
