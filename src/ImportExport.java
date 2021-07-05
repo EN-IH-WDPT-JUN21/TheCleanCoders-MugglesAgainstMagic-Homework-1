@@ -48,10 +48,12 @@ public class ImportExport {
             writer.write(c.getName() + ",");
             writer.write(c.getHp() + ",");
             if (c instanceof Wizard) {
+                writer.write("Wizard,");
                 writer.write(((Wizard) c).getMana() + ",");
                 writer.write(((Wizard) c).getIntelligence() + ",");
 
             } else if (c instanceof Warrior) {
+                writer.write("Warrior,");
                 writer.write(((Warrior) c).getStamina() + ",");
                 writer.write(((Warrior) c).getStrength() + ",");
             }
