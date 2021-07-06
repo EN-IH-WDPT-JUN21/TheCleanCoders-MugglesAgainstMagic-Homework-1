@@ -39,6 +39,7 @@ public class Navigation {
                 teamMenuNav(party1, party2);
                 break;
             case 2: //Exit game
+                System.exit(0);
                 return false;
             default:
                 return true;
@@ -328,7 +329,7 @@ public class Navigation {
                 teamMenuNav(party1, party2);
                 break;
             case 3: //exit game
-
+                System.exit(0);
         }
     }
 
