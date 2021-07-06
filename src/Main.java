@@ -6,7 +6,7 @@ public class Main {
         Party party1 = new Party();
         Party party2 = new Party();
 
-        Navigation.Navigate(party1, party2);
+        Navigation.navigate(party1, party2);
 
     }
 }
