@@ -21,6 +21,11 @@ public class Party {
         this.aliveCharacters = this.warParty;
     }
 
+    public Party() throws FileNotFoundException{
+        setWarParty(new ArrayList<>());
+        setAliveCharacters(this.warParty);
+    }
+
     public List<Character> generateRandomParty(int partySize) throws FileNotFoundException {
         //Creates an ArrayList that accepts both Warrior and Wizard objects
         List<Character> party = new ArrayList<>();
@@ -51,17 +56,28 @@ public class Party {
         }
     }
 
-    public String printCharacters(List<Character> charactersList){
+    public String warPartyString() {
         String result = "";
-        for (Character member : charactersList) {
-            result += member.getId() +": " + member + "\n";
+        int count = 1;
+        for (Character member : warParty) {
+            result += count++ +": " + member.toString() + "\n";
+        }
+        return result;
+    }
+
+    public String aliveMembersString() {
+        String result = "";
+        int count = 1;
+        for (Character member : aliveCharacters) {
+            result += count++ +": " + member.toString() + "\n";
         }
         return result;
     }
 
     public String toString() {
         return "=== " + name.toUpperCase() + " ===" + '\n' +
-                printCharacters(aliveCharacters) + '\n';
+                "· originalPartyMembers(" + partySize +"): " + '\n' + warPartyString() + '\n' +
+                "· aliveCharacters:" + '\n' + aliveMembersString() + '\n';
     }
 
     // Setters
@@ -104,4 +120,3 @@ public class Party {
         return this.aliveCharacters;
     }
 }
-
