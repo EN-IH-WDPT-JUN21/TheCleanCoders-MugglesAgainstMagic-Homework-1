@@ -11,6 +11,7 @@ public class Party {
     private int partySize;
     private List<Character> warParty;
     private List<Character> aliveCharacters;
+    final static int MAX_SIZE = 7;
 
     //Constructor
 

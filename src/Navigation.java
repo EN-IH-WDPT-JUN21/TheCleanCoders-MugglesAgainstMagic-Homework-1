@@ -13,7 +13,6 @@ public class Navigation {
     static int answer;
     static int comb1;
     static int comb2;
-    final static int MAX_SIZE_TEAM = 7;
 
     public static int mainMenuDraw() {
         Lines.printUpper();
@@ -367,14 +366,14 @@ public class Navigation {
         while (true) {
             try {
                 do {
-                    if (choice < 1 || choice > MAX_SIZE_TEAM) {
-                        System.out.println("\nPlease enter an integer [1 to " + MAX_SIZE_TEAM + "]:");
+                    if (choice < 1 || choice > Party.MAX_SIZE) {
+                        System.out.println("\nPlease enter an integer [1 to " + Party.MAX_SIZE + "]:");
                     }
                     System.out.print("> ");
                     choice = scan.nextInt();
                     scan.nextLine();
                 }
-                while ((choice < 1 || choice > MAX_SIZE_TEAM));
+                while ((choice < 1 || choice > Party.MAX_SIZE));
                 return choice;
             } catch (InputMismatchException e) {
                 scan.next();
