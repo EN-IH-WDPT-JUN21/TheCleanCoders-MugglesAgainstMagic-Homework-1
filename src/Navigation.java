@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,7 +31,7 @@ public class Navigation {
     }
 
     public static boolean navigate(Party party1, Party party2) throws IOException, InterruptedException {
-        answer = takeMenuIntAnswer(mainMenuDraw());
+        answer = Answer.takeMenuInt(mainMenuDraw());
         switch (answer) {
             case 1: //Create new team
                 teamMenuNav(party1, party2);
@@ -57,7 +56,7 @@ public class Navigation {
     }
 
     public static boolean teamMenuNav(Party party1, Party party2) throws IOException, InterruptedException {
-        answer = takeMenuIntAnswer(teamMenuDraw());
+        answer = Answer.takeMenuInt(teamMenuDraw());
         switch (answer) {
             case 1: //Create new team
                 createNewTeamNav(party1, party2);
@@ -83,7 +82,7 @@ public class Navigation {
 
     public static void createNewTeamNav(Party party1, Party party2) throws IOException, InterruptedException {
         generateNewTeamNav(party1, party2);
-        answer = takeMenuIntAnswer(randomQMenuDraw());
+        answer = Answer.takeMenuInt(randomQMenuDraw());
         switch (answer) {
             case 1: //Generate random characters
                 generateNewCharRandomNav(party1, party2);
@@ -116,7 +115,7 @@ public class Navigation {
         Lines.printGameName();
         Lines.printEmpty(8);
         System.out.println("\nPlease enter the path of the CSV file for " + teamNumber + " team: ");
-        String path = takeStringAnswer();
+        String path = Answer.takeString();
         File file = new File(path);
         while (!file.exists()) {
             Lines.printUpper();
@@ -125,7 +124,7 @@ public class Navigation {
             System.out.println("Specified file does not exist.\n");
             System.out.println("1 : Try again");
             System.out.println("2 : Return to the main menu");
-            answer = takeMenuIntAnswer(2);
+            answer = Answer.takeMenuInt(2);
             switch (answer) {
                 case 1:
                     return null;
@@ -142,7 +141,7 @@ public class Navigation {
         Lines.printGameName();
         Lines.printEmpty(8);
         System.out.println("\nPlease enter name of the " + i + " team:");
-        return takeStringAnswer();
+        return Answer.takeString();
     }
 
     public static int teamSizeQDraw(int i) {
@@ -150,7 +149,7 @@ public class Navigation {
         Lines.printGameName();
         Lines.printEmpty(8);
         System.out.println("\nPlease enter size of the " + i + " team:");
-        return takeSizeAnswer();
+        return Answer.takeSize();
     }
 
     public static void generateNewTeamNav(Party party1, Party party2) {
@@ -184,7 +183,7 @@ public class Navigation {
         System.out.println("Adding new characters for " + party.getName());
         Lines.printEmpty(1);
         for (int i = 0; i < party.getPartySize(); i++) {
-            answer = takeMenuIntAnswer(generateNewCharManualMenuDraw());
+            answer = Answer.takeMenuInt(generateNewCharManualMenuDraw());
             System.out.println("Enter new character's name for " + party.getName() + "\n");
             switch (answer) {
                 case 1:
@@ -218,7 +217,7 @@ public class Navigation {
         Lines.printGameName();
         Lines.printEmpty(8);
         System.out.println("\nPlease enter name of the new " + name);
-        return takeStringAnswer();
+        return Answer.takeString();
     }
 
     public static int exportCharactersToFileMenuDraw() {
@@ -233,7 +232,7 @@ public class Navigation {
     }
 
     public static void exportCharactersToFileNav(Party party1, Party party2) throws IOException, InterruptedException {
-        answer = takeMenuIntAnswer(exportCharactersToFileMenuDraw());
+        answer = Answer.takeMenuInt(exportCharactersToFileMenuDraw());
         switch (answer) {
             case 1:
                 ImportExport.writePartyToFile(party1);
@@ -274,7 +273,7 @@ public class Navigation {
     }
 
     public static void afterDuelNav(Party party1, Party party2, Battle battle) throws IOException {
-        answer = takeMenuIntAnswer(afterDuelMenuDraw());
+        answer = Answer.takeMenuInt(afterDuelMenuDraw());
         switch (answer) {
             case 1:
                 return;
@@ -295,7 +294,7 @@ public class Navigation {
         Lines.printEmpty(7 - party1.getAliveCharacters().size());
         System.out.println("ROUND " + battle.getRoundNumber());
         System.out.println("Pick character of the " + party1.getName() + " for the next duel");
-        comb1 = takeCombatId(party1);
+        comb1 = Answer.takeCombatantId(party1);
 
         Lines.printUpper();
         Lines.printGameName();
@@ -304,7 +303,7 @@ public class Navigation {
         Lines.printEmpty(7 - party2.getAliveCharacters().size());
         System.out.println("ROUND " + battle.getRoundNumber());
         System.out.println("Pick character of the " + party2.getName() + " for the next duel");
-        comb2 = takeCombatId(party2);
+        comb2 = Answer.takeCombatantId(party2);
 
         battle.battle(comb1, comb2);
     }
@@ -318,7 +317,7 @@ public class Navigation {
     }
 
     public static void afterBattleNav(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
-        answer = takeMenuIntAnswer(afterBattleMenuDraw());
+        answer = Answer.takeMenuInt(afterBattleMenuDraw());
         switch (answer) {
             case 1:
                 showGraveyardNav(party1, party2, battle);
@@ -339,90 +338,4 @@ public class Navigation {
         Lines.printEmpty(1);
         afterBattleNav(party1, party2, battle);
     }
-
-    public static int takeMenuIntAnswer(int menuSize) {
-        int choice = 0;
-        while (true) {
-            try {
-                do {
-                    if (choice < 1 || choice > menuSize) {
-                        System.out.println("\nPlease enter an integer [1 to " + menuSize + "]:");
-                    }
-                    System.out.print("> ");
-                    choice = scan.nextInt();
-                    scan.nextLine();
-                }
-                while ((choice < 1 || choice > menuSize));
-                return choice;
-            } catch (InputMismatchException e) {
-                scan.next();
-                continue;
-            }
-        }
-    }
-
-    public static int takeSizeAnswer() {
-        int choice = 0;
-        while (true) {
-            try {
-                do {
-                    if (choice < 1 || choice > Party.MAX_SIZE) {
-                        System.out.println("\nPlease enter an integer [1 to " + Party.MAX_SIZE + "]:");
-                    }
-                    System.out.print("> ");
-                    choice = scan.nextInt();
-                    scan.nextLine();
-                }
-                while ((choice < 1 || choice > Party.MAX_SIZE));
-                return choice;
-            } catch (InputMismatchException e) {
-                scan.next();
-                continue;
-            }
-        }
-    }
-
-    public static String takeStringAnswer() {
-        Scanner scan = new Scanner(System.in);
-        String answer = "";
-        while (true) {
-            try {
-                do {
-                    if (answer.isBlank()) {
-                        System.out.println("\nStrings can't be empty");
-                    }
-                    System.out.print("> ");
-                    answer = scan.nextLine();
-                }
-                while (answer.isBlank());
-                return answer;
-            } catch (InputMismatchException e) {
-                System.out.println("\nPlease enter a String: ");
-                scan.next();
-                continue;
-            }
-        }
-    }
-
-    public static int takeCombatId(Party party) {
-        int choice = 0;
-        while (true) {
-            try {
-                do {
-                    if (choice < 0 || choice > (party.getAliveCharacters().size() - 1)) {
-                        System.out.println("\nPlease enter an integer [1 to " + party.getAliveCharacters().size() + "]:");
-                    }
-                    System.out.print("> ");
-                    choice = scan.nextInt() - 1;
-                    scan.nextLine();
-                }
-                while ((choice < 0 || choice > (party.getAliveCharacters().size() - 1)));
-                return choice;
-            } catch (InputMismatchException e) {
-                scan.next();
-                continue;
-            }
-        }
-    }
-
 }
