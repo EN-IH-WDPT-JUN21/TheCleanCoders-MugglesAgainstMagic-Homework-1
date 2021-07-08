@@ -125,7 +125,7 @@ public class Printer {
         return 2;
     }
 
-    public static void PrintCharacterForDuelMenu(Party party, Battle battle) throws InterruptedException {
+    public static void PrintCharacterForDuelMenu(Party party, Battle battle){
         printUpperLine();
         printGameName();
         printEmptyLines(1);
