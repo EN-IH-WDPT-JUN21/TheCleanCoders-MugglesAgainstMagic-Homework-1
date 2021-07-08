@@ -15,7 +15,7 @@ public abstract class Character implements Attacker {
 
     //Constructor (overloaded)
 
-    public Character(String name){
+    public Character(String name) {
         setName(name);
         setAlive(isAlive);
         index++;
@@ -34,7 +34,13 @@ public abstract class Character implements Attacker {
         setHp(getHp() - damage);
     }
 
-    public abstract void addJrToNameIfNeeded(List<Character> list);
+    public void addJrToNameIfNeeded(List<Character> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().equals(getName())) {
+                setName(getName() + " Jr");
+            }
+        }
+    }
 
     // Getters and Setters
     public int getId() {
@@ -60,11 +66,11 @@ public abstract class Character implements Attacker {
         ArrayList<String> surnamesArray = new ArrayList<>();
 
         //Create an ArrayList of names:
-        while(nameList.hasNextLine()) {
+        while (nameList.hasNextLine()) {
             namesArray.add(nameList.nextLine());
         }
         //and the ArrayList of surnames:
-        while(surnameList.hasNextLine()) {
+        while (surnameList.hasNextLine()) {
             surnamesArray.add(surnameList.nextLine());
         }
 
@@ -82,7 +88,7 @@ public abstract class Character implements Attacker {
 
     // Getters and setters
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 

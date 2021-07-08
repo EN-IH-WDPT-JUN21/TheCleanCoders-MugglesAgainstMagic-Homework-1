@@ -41,15 +41,6 @@ public class Wizard extends Character implements Attacker {
         setAlive(true);
     }
 
-    @Override
-        public void addJrToNameIfNeeded(List<Character> list) {
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getName().equals(getName())) {
-                    setName(getName() + " Jr");
-                }
-            }
-        }
-
     public Wizard(String name, int hp, int mana, int intelligence) {
         super(name);
         setHp(hp);
