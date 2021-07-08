@@ -3,29 +3,24 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Navigation {
-    static Scanner scan = new Scanner(System.in);
     static List<Character> listParty1 = new ArrayList<>();
     static List<Character> listParty2 = new ArrayList<>();
     static int answer;
 
-    public static boolean goToMainMenu(Party party1, Party party2) throws IOException, InterruptedException {
+    public static void goToMainMenu() throws IOException, InterruptedException {
         answer = Answer.takeMenuOption(Printer.printMainMenu());
         switch (answer) {
             case 1: //Create new teams
-                goToTeamMenu(party1, party2);
+                goToTeamMenu(new Party(), new Party());
                 break;
             case 2: //Exit game
                 System.exit(0);
-            default:
-                return true;
         }
-        return true;
     }
 
-    public static boolean goToTeamMenu(Party party1, Party party2) throws IOException, InterruptedException {
+    public static void goToTeamMenu(Party party1, Party party2) throws IOException, InterruptedException {
         answer = Answer.takeMenuOption(Printer.PrintTeamMenu());
         switch (answer) {
             case 1: //Create new teams
@@ -35,8 +30,6 @@ public class Navigation {
                 goToImportTeamsFromFileMenu();
                 break;
         }
-        return false;
-        //break;
     }
 
     public static void goToCreateNewTeamsManuallyMenu(Party party1, Party party2) throws IOException, InterruptedException {
@@ -60,10 +53,10 @@ public class Navigation {
     public static void goToImportTeamsFromFileMenu() throws IOException, InterruptedException {
         Party party1 = null;
         Party party2 = null;
-        while(party1 == null) {
+        while (party1 == null) {
             party1 = goToImportOneTeamFromFileMenu(1);
         }
-        while(party2 == null) {
+        while (party2 == null) {
             party2 = goToImportOneTeamFromFileMenu(2);
         }
         goToBattleMenu(party1, party2);
@@ -78,7 +71,7 @@ public class Navigation {
                 case 1: // Try again (goes back to importTeamsFromFileMenu() method)
                     return null;
                 case 2: // Return to the main menu
-                    goToMainMenu(new Party(), new Party());
+                    goToMainMenu();
                     break;
             }
         }
@@ -100,7 +93,7 @@ public class Navigation {
 
     }
 
-    public static void goToGenerateCharactersManuallyMenu(Party party, List<Character> list) throws FileNotFoundException {
+    public static void goToGenerateCharactersManuallyMenu(Party party, List<Character> list) {
         Printer.PrintGenerateCharactersManuallyMenu(party);
         list.clear();
         for (int i = 0; i < party.getPartySize(); i++) {
@@ -150,18 +143,14 @@ public class Navigation {
 
             battle.battle(combatant1, combatant2);
 
-            goToAfterDuelMenu(party1, party2, battle);
+            goToAfterDuelMenu();
         }
 
         goToWinningTeamMenu(party1, party2, battle);
     }
 
-    public static void goToAfterDuelMenu(Party party1, Party party2, Battle battle) throws IOException {
+    public static void goToAfterDuelMenu() {
         answer = Answer.takeMenuOption(Printer.PrintAfterDuelMenu());
-        switch (answer) {
-            case 1:
-                return;
-        }
     }
 
     public static void goToWinningTeamMenu(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
