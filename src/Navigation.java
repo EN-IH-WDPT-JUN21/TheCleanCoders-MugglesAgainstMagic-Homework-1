@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Navigation {
     static List<Character> listParty1 = new ArrayList<>();
@@ -13,18 +14,18 @@ public class Navigation {
         answer = Answer.takeMenuOption(Printer.printMainMenu());
         switch (answer) {
             case 1: //Create new teams
-                goToTeamMenu(new Party(), new Party());
+                goToTeamMenu();
                 break;
             case 2: //Exit game
                 System.exit(0);
         }
     }
 
-    public static void goToTeamMenu(Party party1, Party party2) throws IOException, InterruptedException {
+    public static void goToTeamMenu() throws IOException, InterruptedException {
         answer = Answer.takeMenuOption(Printer.PrintTeamMenu());
         switch (answer) {
             case 1: //Create new teams
-                goToCreateNewTeamsManuallyMenu(party1, party2);
+                goToCreateNewTeamsManuallyMenu();
                 break;
             case 2: //Import teams from a csv file
                 goToImportTeamsFromFileMenu();
@@ -32,7 +33,9 @@ public class Navigation {
         }
     }
 
-    public static void goToCreateNewTeamsManuallyMenu(Party party1, Party party2) throws IOException, InterruptedException {
+    public static void goToCreateNewTeamsManuallyMenu() throws IOException, InterruptedException {
+        Party party1 = new Party();
+        Party party2 = new Party();
         goToGenerateNewTeamsMenu(party1, party2);
         answer = Answer.takeMenuOption(Printer.PrintCreateNewTeamsManuallyMenu());
         switch (answer) {
@@ -53,10 +56,10 @@ public class Navigation {
     public static void goToImportTeamsFromFileMenu() throws IOException, InterruptedException {
         Party party1 = null;
         Party party2 = null;
-        while (party1 == null) {
+        while (Objects.isNull(party1)) {
             party1 = goToImportOneTeamFromFileMenu(1);
         }
-        while (party2 == null) {
+        while (Objects.isNull(party2)) {
             party2 = goToImportOneTeamFromFileMenu(2);
         }
         goToBattleMenu(party1, party2);
@@ -165,7 +168,7 @@ public class Navigation {
                 goToShowGraveyardMenu(party1, party2, battle);
                 break;
             case 2: // Play new game
-                goToTeamMenu(party1, party2);
+                goToTeamMenu();
                 break;
             case 3: //Exit game
                 System.exit(0);
