@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Answer {
 
-    public static int takeMenuInt(int menuSize) {
+    public static int takeMenuOption(int menuSize) {
         Scanner scan = new Scanner(System.in);
         int choice = 0;
         while (true) {
@@ -24,7 +24,7 @@ public class Answer {
         }
     }
 
-    public static int takeSize() {
+    public static int takeTeamSize() {
         Scanner scan = new Scanner(System.in);
         int choice = 0;
         while (true) {

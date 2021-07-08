@@ -11,11 +11,11 @@ public class Navigation {
     static List<Character> listParty2 = new ArrayList<>();
     static int answer;
 
-    public static boolean mainMenu(Party party1, Party party2) throws IOException, InterruptedException {
-        answer = Answer.takeMenuInt(Print.mainMenu());
+    public static boolean goToMainMenu(Party party1, Party party2) throws IOException, InterruptedException {
+        answer = Answer.takeMenuOption(Printer.printMainMenu());
         switch (answer) {
             case 1: //Create new teams
-                teamMenu(party1, party2);
+                goToTeamMenu(party1, party2);
                 break;
             case 2: //Exit game
                 System.exit(0);
@@ -25,74 +25,74 @@ public class Navigation {
         return true;
     }
 
-    public static boolean teamMenu(Party party1, Party party2) throws IOException, InterruptedException {
-        answer = Answer.takeMenuInt(Print.teamMenu());
+    public static boolean goToTeamMenu(Party party1, Party party2) throws IOException, InterruptedException {
+        answer = Answer.takeMenuOption(Printer.PrintTeamMenu());
         switch (answer) {
             case 1: //Create new teams
-                createNewTeamsManuallyMenu(party1, party2);
+                goToCreateNewTeamsManuallyMenu(party1, party2);
                 break;
             case 2: //Import teams from a csv file
-                importTeamsFromFileMenu();
+                goToImportTeamsFromFileMenu();
                 break;
         }
         return false;
         //break;
     }
 
-    public static void createNewTeamsManuallyMenu(Party party1, Party party2) throws IOException, InterruptedException {
-        generateNewTeamsMenu(party1, party2);
-        answer = Answer.takeMenuInt(Print.createNewTeamsManuallyMenu());
+    public static void goToCreateNewTeamsManuallyMenu(Party party1, Party party2) throws IOException, InterruptedException {
+        goToGenerateNewTeamsMenu(party1, party2);
+        answer = Answer.takeMenuOption(Printer.PrintCreateNewTeamsManuallyMenu());
         switch (answer) {
             case 1: //Generate random characters
-                generateRandomCharactersMenu(party1, party2);
-                exportTeamsToFileMenu(party1, party2);
-                battleMenu(party1, party2);
+                goToGenerateRandomCharactersMenu(party1, party2);
+                goToExportTeamsToFileMenu(party1, party2);
+                goToBattleMenu(party1, party2);
                 break;
             case 2: //Generate characters manually
-                generateCharactersManuallyMenu(party1, listParty1);
-                generateCharactersManuallyMenu(party2, listParty2);
-                exportTeamsToFileMenu(party1, party2);
-                battleMenu(party1, party2);
+                goToGenerateCharactersManuallyMenu(party1, listParty1);
+                goToGenerateCharactersManuallyMenu(party2, listParty2);
+                goToExportTeamsToFileMenu(party1, party2);
+                goToBattleMenu(party1, party2);
                 break;
         }
     }
 
-    public static void importTeamsFromFileMenu() throws IOException, InterruptedException {
+    public static void goToImportTeamsFromFileMenu() throws IOException, InterruptedException {
         Party party1 = null;
         Party party2 = null;
         while(party1 == null) {
-            party1 = importOneTeamFromFileMenu(1);
+            party1 = goToImportOneTeamFromFileMenu(1);
         }
         while(party2 == null) {
-            party2 = importOneTeamFromFileMenu(2);
+            party2 = goToImportOneTeamFromFileMenu(2);
         }
-        battleMenu(party1, party2);
+        goToBattleMenu(party1, party2);
     }
 
-    public static Party importOneTeamFromFileMenu(int teamNumber) throws IOException, InterruptedException {
-        String path = Print.importOneTeamFromFileMenu(teamNumber);
+    public static Party goToImportOneTeamFromFileMenu(int teamNumber) throws IOException, InterruptedException {
+        String path = Printer.PrintImportOneTeamFromFileMenu(teamNumber);
         File file = new File(path);
         while (!file.exists()) {
-            answer = Answer.takeMenuInt(Print.fileDoesNotExistMenu());
+            answer = Answer.takeMenuOption(Printer.PrintFileDoesNotExistMenu());
             switch (answer) {
                 case 1: // Try again (goes back to importTeamsFromFileMenu() method)
                     return null;
                 case 2: // Return to the main menu
-                    mainMenu(new Party(), new Party());
+                    goToMainMenu(new Party(), new Party());
                     break;
             }
         }
         return ImportExport.readPartyFromFile(path);
     }
 
-    public static void generateNewTeamsMenu(Party party1, Party party2) {
-        party1.setName(Print.teamNameMenu(1));
-        party1.setPartySize(Print.teamSizeMenu(1));
-        party2.setName(Print.teamNameMenu(2));
-        party2.setPartySize(Print.teamSizeMenu(2));
+    public static void goToGenerateNewTeamsMenu(Party party1, Party party2) {
+        party1.setName(Printer.PrintTeamNameMenu(1));
+        party1.setPartySize(Printer.PrintTeamSizeMenu(1));
+        party2.setName(Printer.PrintTeamNameMenu(2));
+        party2.setPartySize(Printer.PrintTeamSizeMenu(2));
     }
 
-    public static void generateRandomCharactersMenu(Party party1, Party party2) throws FileNotFoundException {
+    public static void goToGenerateRandomCharactersMenu(Party party1, Party party2) throws FileNotFoundException {
         party1.setWarParty(party1.generateRandomParty(party1.getPartySize()));
         party1.setAliveCharacters(party1.getWarParty());
         party2.setWarParty(party2.generateRandomParty(party2.getPartySize()));
@@ -100,20 +100,20 @@ public class Navigation {
 
     }
 
-    public static void generateCharactersManuallyMenu(Party party, List<Character> list) throws FileNotFoundException {
-        Print.generateCharactersManuallyMenu(party);
+    public static void goToGenerateCharactersManuallyMenu(Party party, List<Character> list) throws FileNotFoundException {
+        Printer.PrintGenerateCharactersManuallyMenu(party);
         list.clear();
         for (int i = 0; i < party.getPartySize(); i++) {
-            answer = Answer.takeMenuInt(Print.generateNewCharactersManuallyMenu(party));
+            answer = Answer.takeMenuOption(Printer.PrintGenerateNewCharactersManuallyMenu(party));
             switch (answer) {
                 case 1:
-                    String nameOfWarrior = Print.characterNameMenu("Muggle", party);
+                    String nameOfWarrior = Printer.PrintCharacterNameMenu("Muggle", party);
                     Warrior warrior = new Warrior(nameOfWarrior);
                     warrior.addJrToNameIfNeeded(list);
                     list.add(warrior);
                     break;
                 case 2:
-                    String nameOfWizard = Print.characterNameMenu("Wizard", party);
+                    String nameOfWizard = Printer.PrintCharacterNameMenu("Wizard", party);
                     Wizard wizard = new Wizard(nameOfWizard);
                     wizard.addJrToNameIfNeeded(list);
                     list.add(wizard);
@@ -124,67 +124,67 @@ public class Navigation {
         party.setAliveCharacters(list);
     }
 
-    public static void exportTeamsToFileMenu(Party party1, Party party2) throws IOException, InterruptedException {
-        answer = Answer.takeMenuInt(Print.exportTeamsToFileMenu());
+    public static void goToExportTeamsToFileMenu(Party party1, Party party2) throws IOException, InterruptedException {
+        answer = Answer.takeMenuOption(Printer.PrintExportTeamsToFileMenu());
         switch (answer) {
             case 1:
                 ImportExport.writePartyToFile(party1);
                 ImportExport.writePartyToFile(party2);
-                battleMenu(party1, party2);
+                goToBattleMenu(party1, party2);
                 break;
             case 2:
-                battleMenu(party1, party2);
+                goToBattleMenu(party1, party2);
                 break;
         }
     }
 
-    public static void battleMenu(Party party1, Party party2) throws IOException, InterruptedException {
+    public static void goToBattleMenu(Party party1, Party party2) throws IOException, InterruptedException {
         Battle battle = new Battle(party1, party2);
 
         while (party1.getAliveCharacters().size() > 0 && party2.getAliveCharacters().size() > 0) {
-            Print.characterForDuelMenu(party1, battle);
+            Printer.PrintCharacterForDuelMenu(party1, battle);
             int combatant1 = Answer.takeCombatantId(party1);
 
-            Print.characterForDuelMenu(party2, battle);
+            Printer.PrintCharacterForDuelMenu(party2, battle);
             int combatant2 = Answer.takeCombatantId(party2);
 
             battle.battle(combatant1, combatant2);
 
-            afterDuelMenu(party1, party2, battle);
+            goToAfterDuelMenu(party1, party2, battle);
         }
 
-        winningTeamMenu(party1, party2, battle);
+        goToWinningTeamMenu(party1, party2, battle);
     }
 
-    public static void afterDuelMenu(Party party1, Party party2, Battle battle) throws IOException {
-        answer = Answer.takeMenuInt(Print.afterDuelMenu());
+    public static void goToAfterDuelMenu(Party party1, Party party2, Battle battle) throws IOException {
+        answer = Answer.takeMenuOption(Printer.PrintAfterDuelMenu());
         switch (answer) {
             case 1:
                 return;
         }
     }
 
-    public static void winningTeamMenu(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
-        Print.winningTeamMenu(party1, party2);
-        afterBattleMenu(party1, party1, battle);
+    public static void goToWinningTeamMenu(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
+        Printer.PrintWinningTeamMenu(party1, party2);
+        goToAfterBattleMenu(party1, party1, battle);
     }
 
-    public static void afterBattleMenu(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
-        answer = Answer.takeMenuInt(Print.afterBattleMenu());
+    public static void goToAfterBattleMenu(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
+        answer = Answer.takeMenuOption(Printer.PrintAfterBattleMenu());
         switch (answer) {
             case 1: // Show graveyard
-                showGraveyardMenu(party1, party2, battle);
+                goToShowGraveyardMenu(party1, party2, battle);
                 break;
             case 2: // Play new game
-                teamMenu(party1, party2);
+                goToTeamMenu(party1, party2);
                 break;
             case 3: //Exit game
                 System.exit(0);
         }
     }
 
-    public static void showGraveyardMenu(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
-        Print.showGraveyardMenu(battle);
-        afterBattleMenu(party1, party2, battle);
+    public static void goToShowGraveyardMenu(Party party1, Party party2, Battle battle) throws IOException, InterruptedException {
+        Printer.PrintShowGraveyardMenu(battle);
+        goToAfterBattleMenu(party1, party2, battle);
     }
 }

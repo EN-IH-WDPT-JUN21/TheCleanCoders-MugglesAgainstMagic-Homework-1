@@ -1,4 +1,4 @@
-public class Print {
+public class Printer {
     public static void printEmptyLines(int n) {
         for (int i = 0; i < n; i++) {
             System.out.println();
@@ -13,7 +13,7 @@ public class Print {
         System.out.println("MUGGLES AGAINST MAGIC\nby TheCleanCoders");
     }
     
-    public static int mainMenu() {
+    public static int printMainMenu() {
         printUpperLine();
         printEmptyLines(1);
         System.out.println("Welcome to our game MUGGLES AGAINST MAGIC");
@@ -30,7 +30,7 @@ public class Print {
         return 2;
     }
 
-    public static int teamMenu() {
+    public static int PrintTeamMenu() {
         printUpperLine();
         printGameName();
         printEmptyLines(6);
@@ -41,7 +41,7 @@ public class Print {
         return 2;
     }
 
-    public static int createNewTeamsManuallyMenu() {
+    public static int PrintCreateNewTeamsManuallyMenu() {
         printUpperLine();
         printGameName();
         printEmptyLines(6);
@@ -52,7 +52,7 @@ public class Print {
         return 2;
     }
 
-    public static String importOneTeamFromFileMenu(int teamNumber) {
+    public static String PrintImportOneTeamFromFileMenu(int teamNumber) {
         printUpperLine();
         printGameName();
         printEmptyLines(8);
@@ -60,7 +60,7 @@ public class Print {
         return Answer.takeString();
     }
 
-    public static int fileDoesNotExistMenu() {
+    public static int PrintFileDoesNotExistMenu() {
         printUpperLine();
         printGameName();
         printEmptyLines(6);
@@ -71,7 +71,7 @@ public class Print {
         return 2;
     }
 
-    public static String teamNameMenu(int i) {
+    public static String PrintTeamNameMenu(int i) {
         printUpperLine();
         printGameName();
         printEmptyLines(8);
@@ -79,15 +79,15 @@ public class Print {
         return Answer.takeString();
     }
 
-    public static int teamSizeMenu(int i) {
+    public static int PrintTeamSizeMenu(int i) {
         printUpperLine();
         printGameName();
         printEmptyLines(8);
         System.out.println("\nPlease enter size of the " + i + " team:");
-        return Answer.takeSize();
+        return Answer.takeTeamSize();
     }
 
-    public static void generateCharactersManuallyMenu(Party party) {
+    public static void PrintGenerateCharactersManuallyMenu(Party party) {
         printUpperLine();
         printGameName();
         printEmptyLines(4);
@@ -95,7 +95,7 @@ public class Print {
         printEmptyLines(1);
     }
 
-    public static int generateNewCharactersManuallyMenu(Party party) {
+    public static int PrintGenerateNewCharactersManuallyMenu(Party party) {
         printUpperLine();
         printGameName();
         printEmptyLines(6);
@@ -106,7 +106,7 @@ public class Print {
         return 2;
     }
 
-    public static String characterNameMenu(String type, Party party) {
+    public static String PrintCharacterNameMenu(String type, Party party) {
         printUpperLine();
         printGameName();
         printEmptyLines(8);
@@ -114,7 +114,7 @@ public class Print {
         return Answer.takeString();
     }
 
-    public static int exportTeamsToFileMenu() {
+    public static int PrintExportTeamsToFileMenu() {
         printUpperLine();
         printGameName();
         printEmptyLines(6);
@@ -125,7 +125,7 @@ public class Print {
         return 2;
     }
 
-    public static void characterForDuelMenu(Party party, Battle battle) throws InterruptedException {
+    public static void PrintCharacterForDuelMenu(Party party, Battle battle) throws InterruptedException {
         printUpperLine();
         printGameName();
         printEmptyLines(1);
@@ -135,13 +135,13 @@ public class Print {
         System.out.println("Pick character of the " + party.getName() + " for the next duel");
     }
 
-    public static int afterDuelMenu() {
+    public static int PrintAfterDuelMenu() {
         System.out.println("1 : Continue");
         //Return size of menu
         return 1;
     }
 
-    public static void winningTeamMenu(Party party1, Party party2) {
+    public static void PrintWinningTeamMenu(Party party1, Party party2) {
         String winner = "";
 
         printUpperLine();
@@ -160,7 +160,7 @@ public class Print {
         }
     }
 
-    public static int afterBattleMenu() {
+    public static int PrintAfterBattleMenu() {
         System.out.println("1 : Show graveyard");
         System.out.println("2 : Play new game");
         System.out.println("3 : Exit");
@@ -168,7 +168,7 @@ public class Print {
         return 3;
     }
 
-    public static void showGraveyardMenu(Battle battle) {
+    public static void PrintShowGraveyardMenu(Battle battle) {
         printUpperLine();
         printGameName();
         printEmptyLines(2);
