@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class Warrior extends Character implements Attacker {
     // Properties
@@ -38,6 +39,15 @@ public class Warrior extends Character implements Attacker {
         setStamina(stamina);
         setStrength(strength);
         setAlive(true);
+    }
+
+    @Override
+    public void addJrToNameIfNeeded(List<Character> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().equals(getName())) {
+                setName(getName() + " Jr");
+            }
+        }
     }
 
     public Warrior(String name, int hp, int stamina, int strength) {

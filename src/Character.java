@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -32,6 +33,8 @@ public abstract class Character implements Attacker {
     public void receiveDamage(int damage) {
         setHp(getHp() - damage);
     }
+
+    public abstract void addJrToNameIfNeeded(List<Character> list);
 
     // Getters and Setters
     public int getId() {

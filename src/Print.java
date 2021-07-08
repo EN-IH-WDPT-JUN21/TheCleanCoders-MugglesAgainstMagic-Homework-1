@@ -27,18 +27,37 @@ public class Print {
         return 2;
     }
 
-    public static int randomQMenu() {
+    public static int createNewTeamsManuallyMenu() {
         Lines.printUpper();
         Lines.printGameName();
-        Lines.printEmpty(7);
-        System.out.println("Generate random characters?");
+        Lines.printEmpty(6);
+        System.out.println("Generate random characters?\n");
         System.out.println("1 : Yes");
         System.out.println("2 : No");
         //Return size of menu
         return 2;
     }
 
-    public static String teamNameQMenu(int i) {
+    public static String importOneTeamFromFileMenu(int teamNumber) {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(8);
+        System.out.println("\nPlease enter the path of the CSV file for " + teamNumber + " team: ");
+        return Answer.takeString();
+    }
+
+    public static int fileDoesNotExistMenu() {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(6);
+        System.out.println("Specified file does not exist.\n");
+        System.out.println("1 : Try again");
+        System.out.println("2 : Return to the main menu");
+        // Return size of menu
+        return 2;
+    }
+
+    public static String teamNameMenu(int i) {
         Lines.printUpper();
         Lines.printGameName();
         Lines.printEmpty(8);
@@ -46,7 +65,7 @@ public class Print {
         return Answer.takeString();
     }
 
-    public static int teamSizeQMenu(int i) {
+    public static int teamSizeMenu(int i) {
         Lines.printUpper();
         Lines.printGameName();
         Lines.printEmpty(8);
@@ -54,23 +73,34 @@ public class Print {
         return Answer.takeSize();
     }
 
-    public static int generateNewCharManualMenu() {
-        System.out.println("Choose type of the new character\n");
+    public static void generateCharactersManuallyMenu(Party party) {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(4);
+        System.out.println("Adding new characters for " + party.getName());
+        Lines.printEmpty(1);
+    }
+
+    public static int generateNewCharactersManuallyMenu(Party party) {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(6);
+        System.out.println("Choose type of the new character in team " + party.getName() + "\n");
         System.out.println("1 : Muggle");
         System.out.println("2 : Wizard");
         //Return size of menu
         return 2;
     }
 
-    public static String characterNameMenu(String name) {
+    public static String characterNameMenu(String type, Party party) {
         Lines.printUpper();
         Lines.printGameName();
         Lines.printEmpty(8);
-        System.out.println("\nPlease enter name of the new " + name);
+        System.out.println("\nPlease enter name of the new " + type + "in team " + party.getName());
         return Answer.takeString();
     }
 
-    public static int exportCharactersToFileMenu() {
+    public static int exportTeamsToFileMenu() {
         Lines.printUpper();
         Lines.printGameName();
         Lines.printEmpty(6);
@@ -81,32 +111,39 @@ public class Print {
         return 2;
     }
 
+    public static void characterForDuelMenu(Party party, Battle battle) throws InterruptedException {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(1);
+        System.out.println("Characters of " + party.getName() + '\n' + party.aliveMembersString());
+        Lines.printEmpty(7 - party.getAliveCharacters().size());
+        System.out.println("ROUND " + battle.getRoundNumber());
+        System.out.println("Pick character of the " + party.getName() + " for the next duel");
+    }
+
     public static int afterDuelMenu() {
         System.out.println("1 : Continue");
         //Return size of menu
         return 1;
     }
 
-    public static void charForDuelMenu(Party party1, Party party2, Battle battle) throws InterruptedException {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(1);
-        System.out.println("Characters of " + party1.getName() + '\n' + party1.aliveMembersString());
-        Lines.printEmpty(7 - party1.getAliveCharacters().size());
-        System.out.println("ROUND " + battle.getRoundNumber());
-        System.out.println("Pick character of the " + party1.getName() + " for the next duel");
-        int comb1 = Answer.takeCombatantId(party1);
+    public static void winningTeamMenu(Party party1, Party party2) {
+        String winner = "";
 
         Lines.printUpper();
         Lines.printGameName();
-        Lines.printEmpty(1);
-        System.out.println("Characters of " + party2.getName() + '\n' + party2.aliveMembersString());
-        Lines.printEmpty(7 - party2.getAliveCharacters().size());
-        System.out.println("ROUND " + battle.getRoundNumber());
-        System.out.println("Pick character of the " + party2.getName() + " for the next duel");
-        int comb2 = Answer.takeCombatantId(party2);
+        Lines.printEmpty(5);
 
-        battle.battle(comb1, comb2);
+        if (party1.getAliveCharacters().size() == 0 && party2.getAliveCharacters().size() == 0) {
+            System.out.println("It's a tie! All characters died....");
+        } else if (party1.getAliveCharacters().size() == 0) {
+            winner = party2.getName();
+        } else if (party2.getAliveCharacters().size() == 0) {
+            winner = party1.getName();
+        }
+        if (!winner.equals("")) {
+            System.out.println(winner + " WINS!!!\n");
+        }
     }
 
     public static int afterBattleMenu() {
@@ -115,5 +152,13 @@ public class Print {
         System.out.println("3 : Exit");
         //Return size of menu
         return 3;
+    }
+
+    public static void showGraveyardMenu(Battle battle) {
+        Lines.printUpper();
+        Lines.printGameName();
+        Lines.printEmpty(2);
+        System.out.println(battle.graveyard.toString());
+        Lines.printEmpty(1);
     }
 }
