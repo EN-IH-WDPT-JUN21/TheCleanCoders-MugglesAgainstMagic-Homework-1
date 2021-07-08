@@ -1,15 +1,29 @@
 public class Print {
+    public static void printEmptyLines(int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.println();
+        }
+    }
+
+    public static void printUpperLine() {
+        System.out.println("================================================================");
+    }
+
+    public static void printGameName() {
+        System.out.println("MUGGLES AGAINST MAGIC\nby TheCleanCoders");
+    }
+    
     public static int mainMenu() {
-        Lines.printUpper();
-        Lines.printEmpty(1);
+        printUpperLine();
+        printEmptyLines(1);
         System.out.println("Welcome to our game MUGGLES AGAINST MAGIC");
-        Lines.printEmpty(1);
+        printEmptyLines(1);
         System.out.println("      Created by TheCleanCoders");
-        Lines.printEmpty(2);
+        printEmptyLines(2);
         System.out.println("For the best experience resize your terminal so it fits 15 lines");
-        Lines.printEmpty(1);
+        printEmptyLines(1);
         System.out.println("Main menu");
-        Lines.printEmpty(1);
+        printEmptyLines(1);
         System.out.println("1 : Play new game");
         System.out.println("2 : Exit");
         //Return size of menu
@@ -17,9 +31,9 @@ public class Print {
     }
 
     public static int teamMenu() {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(6);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(6);
         System.out.println("Team Creator\n");
         System.out.println("1 : Create new teams");
         System.out.println("2 : Import teams from CSV files");
@@ -28,9 +42,9 @@ public class Print {
     }
 
     public static int createNewTeamsManuallyMenu() {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(6);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(6);
         System.out.println("Generate random characters?\n");
         System.out.println("1 : Yes");
         System.out.println("2 : No");
@@ -39,17 +53,17 @@ public class Print {
     }
 
     public static String importOneTeamFromFileMenu(int teamNumber) {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(8);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(8);
         System.out.println("\nPlease enter the path of the CSV file for " + teamNumber + " team: ");
         return Answer.takeString();
     }
 
     public static int fileDoesNotExistMenu() {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(6);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(6);
         System.out.println("Specified file does not exist.\n");
         System.out.println("1 : Try again");
         System.out.println("2 : Return to the main menu");
@@ -58,33 +72,33 @@ public class Print {
     }
 
     public static String teamNameMenu(int i) {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(8);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(8);
         System.out.println("\nPlease enter name of the " + i + " team:");
         return Answer.takeString();
     }
 
     public static int teamSizeMenu(int i) {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(8);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(8);
         System.out.println("\nPlease enter size of the " + i + " team:");
         return Answer.takeSize();
     }
 
     public static void generateCharactersManuallyMenu(Party party) {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(4);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(4);
         System.out.println("Adding new characters for " + party.getName());
-        Lines.printEmpty(1);
+        printEmptyLines(1);
     }
 
     public static int generateNewCharactersManuallyMenu(Party party) {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(6);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(6);
         System.out.println("Choose type of the new character in team " + party.getName() + "\n");
         System.out.println("1 : Muggle");
         System.out.println("2 : Wizard");
@@ -93,17 +107,17 @@ public class Print {
     }
 
     public static String characterNameMenu(String type, Party party) {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(8);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(8);
         System.out.println("\nPlease enter name of the new " + type + "in team " + party.getName());
         return Answer.takeString();
     }
 
     public static int exportTeamsToFileMenu() {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(6);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(6);
         System.out.println("Would you like to save created teams to CSV file?\n");
         System.out.println("1 : Yes");
         System.out.println("2 : No");
@@ -112,11 +126,11 @@ public class Print {
     }
 
     public static void characterForDuelMenu(Party party, Battle battle) throws InterruptedException {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(1);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(1);
         System.out.println("Characters of " + party.getName() + '\n' + party.aliveMembersString());
-        Lines.printEmpty(7 - party.getAliveCharacters().size());
+        printEmptyLines(7 - party.getAliveCharacters().size());
         System.out.println("ROUND " + battle.getRoundNumber());
         System.out.println("Pick character of the " + party.getName() + " for the next duel");
     }
@@ -130,9 +144,9 @@ public class Print {
     public static void winningTeamMenu(Party party1, Party party2) {
         String winner = "";
 
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(5);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(5);
 
         if (party1.getAliveCharacters().size() == 0 && party2.getAliveCharacters().size() == 0) {
             System.out.println("It's a tie! All characters died....");
@@ -155,10 +169,10 @@ public class Print {
     }
 
     public static void showGraveyardMenu(Battle battle) {
-        Lines.printUpper();
-        Lines.printGameName();
-        Lines.printEmpty(2);
+        printUpperLine();
+        printGameName();
+        printEmptyLines(2);
         System.out.println(battle.graveyard.toString());
-        Lines.printEmpty(1);
+        printEmptyLines(1);
     }
 }
