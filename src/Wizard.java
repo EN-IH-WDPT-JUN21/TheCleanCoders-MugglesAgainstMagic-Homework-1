@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class Wizard extends Character implements Attacker {
     // Properties

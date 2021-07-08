@@ -55,8 +55,7 @@ public class ImportExport {
         List<Character> members = party.getAliveCharacters();
         FileWriter writer = new FileWriter(filePath, false);
 
-        for (int i = 0; i < members.size(); i++) {
-            Character c = members.get(i);
+        for (Character c : members) {
             writer.write(c.getName().replace(" ", "_") + ",");
             writer.write(c.getHp() + ",");
 

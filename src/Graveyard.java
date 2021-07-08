@@ -14,7 +14,7 @@ public class Graveyard {
 
     // Methods
     public void addCharacter(Character character, int team) {
-        if(team == 1) {
+        if (team == 1) {
             this.graveyard1.add(character.getName());
         } else if (team == 2) {
             this.graveyard2.add(character.getName());
@@ -24,7 +24,7 @@ public class Graveyard {
     public String toString() {
         return "✝✝✝✝ Graveyard ✝✝✝✝" + '\n' +
                 "Team 1: " + graveyard1 + '\n' +
-                "Team 2: " +  graveyard2 + '\n';
+                "Team 2: " + graveyard2 + '\n';
     }
 
     // Setters
@@ -36,15 +36,4 @@ public class Graveyard {
     public void setGraveyard2(List<String> graveyard2) {
         this.graveyard2 = graveyard2;
     }
-
-    // Getters
-
-    public List<String> getGraveyard1() {
-        return graveyard1;
-    }
-
-    public List<String> getGraveyard2() {
-        return graveyard2;
-    }
-
 }

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public abstract class Character implements Attacker {
     // Properties
-    private int id = 0;
+    private final int id;
     private static int index = 0; //This works. Had to include a new variable
     private String name;
     private int hp;
@@ -35,17 +35,14 @@ public abstract class Character implements Attacker {
     }
 
     public void addJrToNameIfNeeded(List<Character> list) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getName().equals(getName())) {
+        for (Character character : list) {
+            if (character.getName().equals(getName())) {
                 setName(getName() + " Jr");
             }
         }
     }
 
     // Getters and Setters
-    public int getId() {
-        return this.id;
-    }
 
     public String getName() {
         return name;

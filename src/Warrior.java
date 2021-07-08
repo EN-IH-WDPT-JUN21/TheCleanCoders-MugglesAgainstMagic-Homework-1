@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class Warrior extends Character implements Attacker {
     // Properties

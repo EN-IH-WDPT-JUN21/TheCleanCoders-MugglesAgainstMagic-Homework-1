@@ -15,14 +15,7 @@ public class Party {
 
     //Constructor
 
-    public Party(String name, int partySize) throws FileNotFoundException{
-        setName(name);
-        setPartySize(partySize);
-        this.warParty = generateRandomParty(partySize);
-        this.aliveCharacters = this.warParty;
-    }
-
-    public Party() throws FileNotFoundException{
+    public Party(){
         setWarParty(new ArrayList<>());
         setAliveCharacters(this.warParty);
     }
@@ -58,21 +51,21 @@ public class Party {
     }
 
     public String warPartyString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int count = 1;
         for (Character member : warParty) {
-            result += count++ +": " + member.toString() + "\n";
+            result.append(count++).append(": ").append(member.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 
     public String aliveMembersString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int count = 1;
         for (Character member : aliveCharacters) {
-            result += count++ +": " + member.toString() + "\n";
+            result.append(count++).append(": ").append(member.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 
     public String toString() {

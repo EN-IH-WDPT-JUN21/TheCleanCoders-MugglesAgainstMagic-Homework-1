@@ -33,7 +33,7 @@ public class Battle {
         System.out.println("3.. 2.. 1.. FIGHT!!!!!!!");
 
         // Scene of the battle
-        while(combatant1.isAlive() && combatant2.isAlive()) {
+        while (combatant1.isAlive() && combatant2.isAlive()) {
             System.out.println(" == ROUND " + getRoundNumber() + " ==");
 
             // Attack
@@ -57,7 +57,7 @@ public class Battle {
             System.out.println();
 
             // The combat could end in a tie
-            if(combatant1.getHp() <= 0 && combatant2.getHp() <= 0) {
+            if (combatant1.getHp() <= 0 && combatant2.getHp() <= 0) {
                 battleEndedInATie = true;
                 System.out.println("None of the combatants survived.");
 
@@ -71,7 +71,7 @@ public class Battle {
                 toGraveyard(party2.getAliveCharacters(), combatantId2);
 
                 // Combatant1 lose the fight
-            } else if(combatant1.getHp() <= 0){
+            } else if (combatant1.getHp() <= 0) {
                 winner = combatant2;
                 combatant1.setAlive(false);
 
@@ -86,7 +86,7 @@ public class Battle {
                 System.out.println("THE WINNER IS " + combatant2.getName().toUpperCase());
 
                 // Combatant2 lose the fight
-            } else if(combatant2.getHp() <= 0) {
+            } else if (combatant2.getHp() <= 0) {
                 winner = combatant1;
                 combatant2.setAlive(false);
 
@@ -114,9 +114,8 @@ public class Battle {
     }
 
     // Remove the loser character from the alive characters list
-    public List<Character> toGraveyard(List<Character> aliveCharacters, int index){
+    public void toGraveyard(List<Character> aliveCharacters, int index) {
         aliveCharacters.remove(index);
-        return aliveCharacters;
     }
 
     // Setters
@@ -137,13 +136,5 @@ public class Battle {
 
     public int getRoundNumber() {
         return this.roundNumber;
-    }
-
-    public Party getParty1() {
-        return this.party1;
-    }
-
-    public Party getParty2() {
-        return this.party2;
     }
 }
