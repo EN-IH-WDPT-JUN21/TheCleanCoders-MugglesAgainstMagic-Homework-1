@@ -20,19 +20,19 @@ public class Battle {
 
     // Methods
 
-    public void battle(int combatantId1, int combatantId2) throws InterruptedException {
+    public void duel(int combatantId1, int combatantId2) throws InterruptedException {
         //Selected combatants
         Character combatant1 = party1.getAliveCharacters().get(combatantId1);
         Character combatant2 = party2.getAliveCharacters().get(combatantId2);
 
         Object winner = new Object();
-        boolean battleEndedInATie = false;
+        boolean hasDuelEndedInATie = false;
 
         System.out.println(combatant1.getName().toUpperCase() + " vs. " + combatant2.getName().toUpperCase());
         System.out.println();
         System.out.println("3.. 2.. 1.. FIGHT!!!!!!!");
 
-        // Scene of the battle
+        // Scene of the duel
         while (combatant1.isAlive() && combatant2.isAlive()) {
             System.out.println(" == ROUND " + getRoundNumber() + " ==");
 
@@ -56,9 +56,9 @@ public class Battle {
 
             System.out.println();
 
-            // The combat could end in a tie
+            // The duel could end in a tie
             if (combatant1.getHp() <= 0 && combatant2.getHp() <= 0) {
-                battleEndedInATie = true;
+                hasDuelEndedInATie = true;
                 System.out.println("None of the combatants survived.");
 
                 combatant1.setAlive(false);
@@ -106,7 +106,7 @@ public class Battle {
             Thread.sleep(300);
         }
 
-        if (!battleEndedInATie) {
+        if (!hasDuelEndedInATie) {
             System.out.println(winner);
         }
         System.out.println();

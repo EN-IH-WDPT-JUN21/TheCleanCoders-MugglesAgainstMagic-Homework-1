@@ -142,7 +142,7 @@ public class Navigation {
             Printer.PrintCharacterForDuelMenu(party2, battle);
             int combatant2 = Answer.takeCombatantId(party2);
 
-            battle.battle(combatant1, combatant2);
+            battle.duel(combatant1, combatant2);
 
             goToAfterDuelMenu();
         }
