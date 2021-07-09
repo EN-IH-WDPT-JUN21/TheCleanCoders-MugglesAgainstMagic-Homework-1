@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ImportExport {
 
-    public static Party readPartyFromFile(String fileName) throws FileNotFoundException {
+    public static Party readPartyFromFile(String fileName) {
         File file = new File(fileName);
         List<List<String>> lines = new ArrayList<>();
         Scanner inputStream;
@@ -40,11 +40,11 @@ public class ImportExport {
             if (className.equals("Wizard")) {
                 int mana = Integer.parseInt(line.get(3));
                 int intelligence = Integer.parseInt(line.get(4));
-                party.getWarParty().add(new Wizard(name, hp, mana, intelligence));
+                party.getAliveCharacters().add(new Wizard(name, hp, mana, intelligence));
             } else if (className.equals("Warrior")) {
                 int stamina = Integer.parseInt(line.get(3));
                 int strength = Integer.parseInt(line.get(4));
-                party.getWarParty().add(new Warrior(name, hp, stamina, strength));
+                party.getAliveCharacters().add(new Warrior(name, hp, stamina, strength));
             }
         }
         return party;

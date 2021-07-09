@@ -89,10 +89,8 @@ public class Navigation {
     }
 
     public static void goToGenerateRandomCharactersMenu(Party party1, Party party2) throws FileNotFoundException {
-        party1.setWarParty(party1.generateRandomParty(party1.getPartySize()));
-        party1.setAliveCharacters(party1.getWarParty());
-        party2.setWarParty(party2.generateRandomParty(party2.getPartySize()));
-        party2.setAliveCharacters(party2.getWarParty());
+        party1.setAliveCharacters(party1.generateRandomCharacterList(party1.getPartySize()));
+        party2.setAliveCharacters(party2.generateRandomCharacterList(party2.getPartySize()));
 
     }
 
@@ -116,7 +114,6 @@ public class Navigation {
                     break;
             }
         }
-        party.setWarParty(list);
         party.setAliveCharacters(list);
     }
 
