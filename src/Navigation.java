@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Navigation {
-    static List<Character> listParty1 = new ArrayList<>();
-    static List<Character> listParty2 = new ArrayList<>();
     static int answer;
+    static Name randomNameDatabase;
 
     public static void goToMainMenu() throws IOException, InterruptedException {
         answer = Answer.takeMenuOption(Printer.printMainMenu());
@@ -45,8 +44,8 @@ public class Navigation {
                 goToBattleMenu(party1, party2);
                 break;
             case 2: //Generate characters manually
-                goToGenerateCharactersManuallyMenu(party1, listParty1);
-                goToGenerateCharactersManuallyMenu(party2, listParty2);
+                goToGenerateCharactersManuallyMenu(party1);
+                goToGenerateCharactersManuallyMenu(party2);
                 goToExportTeamsToFileMenu(party1, party2);
                 goToBattleMenu(party1, party2);
                 break;
@@ -89,33 +88,36 @@ public class Navigation {
     }
 
     public static void goToGenerateRandomCharactersMenu(Party party1, Party party2) throws FileNotFoundException {
-        Name randomNameDatabase = new Name();
+        if (Objects.isNull(randomNameDatabase)) {
+            randomNameDatabase = new Name();
+        }
         party1.setAliveCharacters(party1.generateRandomCharacterList(party1.getPartySize(), randomNameDatabase));
         party2.setAliveCharacters(party2.generateRandomCharacterList(party2.getPartySize(), randomNameDatabase));
 
     }
 
-    public static void goToGenerateCharactersManuallyMenu(Party party, List<Character> list) {
+    public static void goToGenerateCharactersManuallyMenu(Party party) {
         Printer.PrintGenerateCharactersManuallyMenu(party);
-        list.clear();
+        List<Character> members = party.getAliveCharacters();
+        members.clear();
         for (int i = 0; i < party.getPartySize(); i++) {
             answer = Answer.takeMenuOption(Printer.PrintGenerateNewCharactersManuallyMenu(party));
             switch (answer) {
                 case 1:
                     String nameOfWarrior = Printer.PrintCharacterNameMenu("Muggle", party);
                     Warrior warrior = new Warrior(nameOfWarrior);
-                    warrior.addJrToNameIfNeeded(list);
-                    list.add(warrior);
+                    warrior.addJrToNameIfNeeded(members);
+                    members.add(warrior);
                     break;
                 case 2:
                     String nameOfWizard = Printer.PrintCharacterNameMenu("Wizard", party);
                     Wizard wizard = new Wizard(nameOfWizard);
-                    wizard.addJrToNameIfNeeded(list);
-                    list.add(wizard);
+                    wizard.addJrToNameIfNeeded(members);
+                    members.add(wizard);
                     break;
             }
         }
-        party.setAliveCharacters(list);
+        party.setAliveCharacters(members);
     }
 
     public static void goToExportTeamsToFileMenu(Party party1, Party party2) throws IOException, InterruptedException {
