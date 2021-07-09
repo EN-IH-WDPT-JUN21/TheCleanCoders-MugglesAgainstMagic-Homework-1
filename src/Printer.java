@@ -12,6 +12,8 @@ public class Printer {
     public static void printGameName() {
         System.out.println("MUGGLES AGAINST MAGIC\nby TheCleanCoders");
     }
+
+    // Non-void methods in this class either return calls to methods in Answer class OR get called as arguments by Answer.takeMenuOption() in which case they return numbers of options in the menu they print
     
     public static int printMainMenu() {
         printUpperLine();

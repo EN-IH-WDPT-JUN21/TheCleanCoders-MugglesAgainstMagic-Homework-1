@@ -1,9 +1,8 @@
 public class Wizard extends Character implements Attacker {
-    // Properties
     private int mana;
     private int intelligence;
 
-    // Constructor (overloaded)
+    // Constructors
 
     public Wizard(String name) {
         super(name);
@@ -27,6 +26,8 @@ public class Wizard extends Character implements Attacker {
         setMana(mana);
         setIntelligence(intelligence);
     }
+
+    // Methods
 
     @Override
     public int attack() {
@@ -66,6 +67,7 @@ public class Wizard extends Character implements Attacker {
     }
 
     // Getters and Setters
+
     public int getMana() {
         return this.mana;
     }

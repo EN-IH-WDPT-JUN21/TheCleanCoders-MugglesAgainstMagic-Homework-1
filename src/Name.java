@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Name {
-    // Empty ArrayLists that will be filled with the contents of the files
+    // Empty ArrayLists that will be filled with the contents of the text files when Name object is instantiated
     private final ArrayList<String> namesArray = new ArrayList<>();
     private final ArrayList<String> surnamesArray = new ArrayList<>();
 
@@ -14,19 +14,19 @@ public class Name {
         File nameFile = new File("names.txt");
         File surnameFile = new File("surnames.txt");
 
-        //Instantiating scanner class objects for each file
+        // Instantiating scanner class objects for each file
         Scanner nameList = new Scanner(nameFile);
         Scanner surnameList = new Scanner(surnameFile);
 
-        //Create an ArrayList of names:
+        // Create an ArrayList of names:
         while (nameList.hasNextLine()) {
             namesArray.add(nameList.nextLine());
         }
-        //and the ArrayList of surnames:
+        // and the ArrayList of surnames:
         while (surnameList.hasNextLine()) {
             surnamesArray.add(surnameList.nextLine());
         }
-        //Good practice: close scanner buffers
+        // Good practice: close scanner buffers
         nameList.close();
         surnameList.close();
     }

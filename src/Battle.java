@@ -21,7 +21,7 @@ public class Battle {
     // Methods
 
     public void duel(int combatantId1, int combatantId2) throws InterruptedException {
-        //Selected combatants
+        // Selected combatants
         Character combatant1 = party1.getAliveCharacters().get(combatantId1);
         Character combatant2 = party2.getAliveCharacters().get(combatantId2);
 
@@ -70,7 +70,7 @@ public class Battle {
                 toGraveyard(party1.getAliveCharacters(), combatantId1);
                 toGraveyard(party2.getAliveCharacters(), combatantId2);
 
-                // Combatant1 lose the fight
+            // Combatant1 loses the fight
             } else if (combatant1.getHp() <= 0) {
                 winner = combatant2;
                 combatant1.setAlive(false);
@@ -85,7 +85,7 @@ public class Battle {
 
                 System.out.println("THE WINNER IS " + combatant2.getName().toUpperCase());
 
-                // Combatant2 lose the fight
+            // Combatant2 loses the fight
             } else if (combatant2.getHp() <= 0) {
                 winner = combatant1;
                 combatant2.setAlive(false);

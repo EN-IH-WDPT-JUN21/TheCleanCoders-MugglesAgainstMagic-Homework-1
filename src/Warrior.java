@@ -1,9 +1,8 @@
 public class Warrior extends Character implements Attacker {
-    // Properties
     private int stamina;
     private int strength;
 
-    // Constructor (overloaded)
+    // Constructors
 
     public Warrior(String name) {
         super(name);
@@ -27,6 +26,8 @@ public class Warrior extends Character implements Attacker {
         setStamina(stamina);
         setStrength(strength);
     }
+
+    // Methods
 
     @Override
     public int attack() {
@@ -66,6 +67,7 @@ public class Warrior extends Character implements Attacker {
     }
 
     // Getters and Setters
+
     public int getStamina() {
         return this.stamina;
     }

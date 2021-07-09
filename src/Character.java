@@ -1,14 +1,13 @@
 import java.util.List;
 
 public abstract class Character implements Attacker {
-    // Properties
     private final int id;
-    private static int index = 0; //This works. Had to include a new variable
+    private static int index = 0;
     private String name;
     private int hp;
     private boolean isAlive = true;
 
-    //Constructor (overloaded)
+    // Constructor
 
     public Character(String name) {
         setName(name);
@@ -16,6 +15,8 @@ public abstract class Character implements Attacker {
         index++;
         this.id = index;
     }
+
+    // Methods
 
     public void receiveDamage(int damage) {
         setHp(getHp() - damage);
@@ -34,8 +35,6 @@ public abstract class Character implements Attacker {
     public String getName() {
         return name;
     }
-
-    // Getters and setters
 
     public void setName(String name) {
         this.name = name;
