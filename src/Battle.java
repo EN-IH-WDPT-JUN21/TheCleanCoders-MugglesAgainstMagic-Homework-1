@@ -20,20 +20,20 @@ public class Battle {
 
     // Methods
 
-    public void battle(int combatantId1, int combatantId2) throws InterruptedException {
-        //Selected combatants
+    public void duel(int combatantId1, int combatantId2) throws InterruptedException {
+        // Selected combatants
         Character combatant1 = party1.getAliveCharacters().get(combatantId1);
         Character combatant2 = party2.getAliveCharacters().get(combatantId2);
 
         Object winner = new Object();
-        boolean battleEndedInATie = false;
+        boolean hasDuelEndedInATie = false;
 
         System.out.println(combatant1.getName().toUpperCase() + " vs. " + combatant2.getName().toUpperCase());
         System.out.println();
         System.out.println("3.. 2.. 1.. FIGHT!!!!!!!");
 
-        // Scene of the battle
-        while(combatant1.isAlive() && combatant2.isAlive()) {
+        // Scene of the duel
+        while (combatant1.isAlive() && combatant2.isAlive()) {
             System.out.println(" == ROUND " + getRoundNumber() + " ==");
 
             // Attack
@@ -56,9 +56,9 @@ public class Battle {
 
             System.out.println();
 
-            // The combat could end in a tie
-            if(combatant1.getHp() <= 0 && combatant2.getHp() <= 0) {
-                battleEndedInATie = true;
+            // The duel could end in a tie
+            if (combatant1.getHp() <= 0 && combatant2.getHp() <= 0) {
+                hasDuelEndedInATie = true;
                 System.out.println("None of the combatants survived.");
 
                 combatant1.setAlive(false);
@@ -70,8 +70,8 @@ public class Battle {
                 toGraveyard(party1.getAliveCharacters(), combatantId1);
                 toGraveyard(party2.getAliveCharacters(), combatantId2);
 
-                // Combatant1 lose the fight
-            } else if(combatant1.getHp() <= 0){
+            // Combatant1 loses the fight
+            } else if (combatant1.getHp() <= 0) {
                 winner = combatant2;
                 combatant1.setAlive(false);
 
@@ -85,8 +85,8 @@ public class Battle {
 
                 System.out.println("THE WINNER IS " + combatant2.getName().toUpperCase());
 
-                // Combatant2 lose the fight
-            } else if(combatant2.getHp() <= 0) {
+            // Combatant2 loses the fight
+            } else if (combatant2.getHp() <= 0) {
                 winner = combatant1;
                 combatant2.setAlive(false);
 
@@ -106,7 +106,7 @@ public class Battle {
             Thread.sleep(300);
         }
 
-        if (!battleEndedInATie) {
+        if (!hasDuelEndedInATie) {
             System.out.println(winner);
         }
         System.out.println();
@@ -114,9 +114,8 @@ public class Battle {
     }
 
     // Remove the loser character from the alive characters list
-    public List<Character> toGraveyard(List<Character> aliveCharacters, int index){
+    public void toGraveyard(List<Character> aliveCharacters, int index) {
         aliveCharacters.remove(index);
-        return aliveCharacters;
     }
 
     // Setters
@@ -137,13 +136,5 @@ public class Battle {
 
     public int getRoundNumber() {
         return this.roundNumber;
-    }
-
-    public Party getParty1() {
-        return this.party1;
-    }
-
-    public Party getParty2() {
-        return this.party2;
     }
 }
