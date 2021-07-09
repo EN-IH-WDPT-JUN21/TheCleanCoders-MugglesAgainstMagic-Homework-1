@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-
 public class Warrior extends Character implements Attacker {
     // Properties
     private int stamina;
@@ -9,23 +7,6 @@ public class Warrior extends Character implements Attacker {
 
     public Warrior(String name) {
         super(name);
-
-        // hp: random between 100-200 to warriors
-        int hp = (int)(Math.random() * 100) + 100;
-        // stamina: random between 10-50
-        int stamina = (int)(Math.random() * 40) + 10;
-        // strength: random between 1-10
-        int strength = (int)(Math.random() * 9) + 1;
-
-        setHp(hp);
-        setStamina(stamina);
-        setStrength(strength);
-        setAlive(true);
-    }
-
-    // Throws a random name
-    public Warrior() throws FileNotFoundException {
-        super();
 
         // hp: random between 100-200 to warriors
         int hp = (int)(Math.random() * 100) + 100;

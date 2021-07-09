@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,37 +13,33 @@ public class Party {
 
     //Constructor
 
-    public Party(){
+    public Party() {
         setAliveCharacters(new ArrayList<>());
     }
 
-    public List<Character> generateRandomCharacterList(int partySize) throws FileNotFoundException {
+    public List<Character> generateRandomCharacterList(int partySize, Name randomNameDatabase) {
         //Creates an ArrayList that accepts both Warrior and Wizard objects
         List<Character> characterList = new ArrayList<>();
 
         //The following populates the ArrayList with as random elements as the party size
         for (int i = 0; i < partySize; i++) {
-            characterList.add(generatePartyElement());
-
-            // If the name generated is already in the party, add Jr at the end
-            for(int j = 0; j < i; j++) {
-                if(characterList.get(i).getName().equals(characterList.get(j).getName())){
-                    characterList.get(i).setName(characterList.get(i).getName() + " Jr");
-                }
-            }
+            Character newRandomCharacter = generateRandomCharacter(randomNameDatabase);
+            newRandomCharacter.addJrToNameIfNeeded(characterList);
+            characterList.add(newRandomCharacter);
         }
 
         return characterList;
     }
 
-    public static Character generatePartyElement() throws FileNotFoundException {
+    public static Character generateRandomCharacter(Name randomNameDatabase) {
         //This method creates a random wizard or warrior
+        String characterName = randomNameDatabase.generateRandomName();
         Random random = new Random();
         int x = random.nextInt(2);
-        if(x == 0) {
-            return new Warrior();
+        if (x == 0) {
+            return new Warrior(characterName);
         } else {
-            return new Wizard();
+            return new Wizard(characterName);
         }
     }
 
@@ -75,7 +70,7 @@ public class Party {
         this.aliveCharacters = aliveCharacters;
     }
 
-    public void updateAliveCharacters(int originalCharacterId, Character stillAliveCharacter){
+    public void updateAliveCharacters(int originalCharacterId, Character stillAliveCharacter) {
         this.aliveCharacters.set(originalCharacterId, stillAliveCharacter);
     }
 

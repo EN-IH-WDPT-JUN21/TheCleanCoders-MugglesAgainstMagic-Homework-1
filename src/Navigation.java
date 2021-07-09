@@ -89,8 +89,9 @@ public class Navigation {
     }
 
     public static void goToGenerateRandomCharactersMenu(Party party1, Party party2) throws FileNotFoundException {
-        party1.setAliveCharacters(party1.generateRandomCharacterList(party1.getPartySize()));
-        party2.setAliveCharacters(party2.generateRandomCharacterList(party2.getPartySize()));
+        Name randomNameDatabase = new Name();
+        party1.setAliveCharacters(party1.generateRandomCharacterList(party1.getPartySize(), randomNameDatabase));
+        party2.setAliveCharacters(party2.generateRandomCharacterList(party2.getPartySize(), randomNameDatabase));
 
     }
 
