@@ -2,9 +2,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Answer {
+    protected static Scanner scan = new Scanner(System.in);
 
     public static int takeMenuOption(int menuSize) {
-        Scanner scan = new Scanner(System.in);
         int choice = 0;
         while (true) {
             try {
@@ -25,7 +25,6 @@ public class Answer {
     }
 
     public static int takeTeamSize() {
-        Scanner scan = new Scanner(System.in);
         int choice = 0;
         while (true) {
             try {
@@ -46,7 +45,6 @@ public class Answer {
     }
 
     public static String takeString() {
-        Scanner scan = new Scanner(System.in);
         String answer = "";
         while (true) {
             try {
@@ -67,7 +65,6 @@ public class Answer {
     }
 
     public static int takeCombatantId(Party party) {
-        Scanner scan = new Scanner(System.in);
         int choice = 0;
         while (true) {
             try {
