@@ -8,6 +8,7 @@ public class Battle {
     public Graveyard graveyard;
     private Party party1;
     private Party party2;
+    Object winner = new Object();
 
     // Constructor
 
@@ -25,7 +26,6 @@ public class Battle {
         Character combatant1 = party1.getAliveCharacters().get(combatantId1);
         Character combatant2 = party2.getAliveCharacters().get(combatantId2);
 
-        Object winner = new Object();
         boolean hasDuelEndedInATie = false;
 
         System.out.println(combatant1.getName().toUpperCase() + " vs. " + combatant2.getName().toUpperCase());
@@ -43,14 +43,12 @@ public class Battle {
             System.out.println();
 
             // Stats after being attacked
-            if (combatant1.getHp() > 0) {
+            if (combatant1.getHp() > 0 && combatant2.getHp() > 0) {
                 System.out.println(combatant1);
-            } else {
-                System.out.println(combatant1.getName() + " died!");
-            }
-            if (combatant2.getHp() > 0) {
                 System.out.println(combatant2);
-            } else {
+            } else if (combatant1.getHp() <= 0) {
+                System.out.println(combatant1.getName() + " died!");
+            } else if (combatant2.getHp() <= 0) {
                 System.out.println(combatant2.getName() + " died!");
             }
 
@@ -61,50 +59,25 @@ public class Battle {
                 hasDuelEndedInATie = true;
                 System.out.println("None of the combatants survived.");
 
-                combatant1.setAlive(false);
-                combatant2.setAlive(false);
-                // Add both to the graveyard list
-                graveyard.addCharacter(party1.getAliveCharacters().get(combatantId1), 1);
-                graveyard.addCharacter(party2.getAliveCharacters().get(combatantId2), 2);
-                // Eliminate both character from the alive characters list
-                toGraveyard(party1.getAliveCharacters(), combatantId1);
-                toGraveyard(party2.getAliveCharacters(), combatantId2);
+                loseDuel(party1, combatant1, combatantId1);
+                loseDuel(party2, combatant2, combatantId2);
 
             // Combatant1 loses the fight
             } else if (combatant1.getHp() <= 0) {
-                winner = combatant2;
-                combatant1.setAlive(false);
-
-                // Add the loser to the graveyard list
-                graveyard.addCharacter(party1.getAliveCharacters().get(combatantId1), 1);
-                // Eliminate the character from the alive characters list
-                toGraveyard(party1.getAliveCharacters(), combatantId1);
-
-                // Save the new stats of the winner
-                party2.updateAliveCharacters(combatantId2, combatant2);
-
-                System.out.println("THE WINNER IS " + combatant2.getName().toUpperCase());
+                winDuel(party2, combatant2, combatantId2);
+                loseDuel(party1, combatant1, combatantId1);
 
             // Combatant2 loses the fight
             } else if (combatant2.getHp() <= 0) {
-                winner = combatant1;
-                combatant2.setAlive(false);
-
-                // Add the loser to the graveyard list
-                graveyard.addCharacter(party2.getAliveCharacters().get(combatantId2), 2);
-                // Eliminate the character from the alive characters list
-                toGraveyard(party2.getAliveCharacters(), combatantId2);
-
-                // Save the new stats of the winner
-                party1.updateAliveCharacters(combatantId1, combatant1);
-
-                System.out.println("THE WINNER IS " + combatant1.getName().toUpperCase());
-
+                winDuel(party1, combatant1, combatantId1);
+                loseDuel(party2, combatant2, combatantId2);
             }
 
             setRoundNumber(getRoundNumber() + 1);
             Thread.sleep(300);
         }
+
+        setRoundNumber(1);
 
         if (!hasDuelEndedInATie) {
             System.out.println(winner);
@@ -113,9 +86,35 @@ public class Battle {
 
     }
 
-    // Remove the loser character from the alive characters list
-    public void toGraveyard(List<Character> aliveCharacters, int index) {
+    // What happens when a combatant loses a duel
+    public void loseDuel(Party party, Character combatant, int combatantId){
+        combatant.setAlive(false);
+
+        // Add the loser to the corresponding graveyard list
+        if(party == party1) {
+            graveyard.addCharacter(party.getAliveCharacters().get(combatantId), 1);
+        } else if(party == party2){
+            graveyard.addCharacter(party.getAliveCharacters().get(combatantId), 2);
+        }
+
+        // Remove the character from the aliveCharacters list
+        toGraveyard(party.getAliveCharacters(), combatantId);
+    }
+
+    // What happens when a combatant wins a duel
+    public void winDuel(Party party, Character combatant, int combatantId){
+        winner = combatant;
+
+        // Save the new stats of the winner
+        party.updateAliveCharacters(combatantId, combatant);
+
+        System.out.println("THE WINNER IS " + combatant.getName().toUpperCase());
+    }
+
+    // Remove a character from the aliveCharacters list
+    public List<Character> toGraveyard(List<Character> aliveCharacters, int index){
         aliveCharacters.remove(index);
+        return aliveCharacters;
     }
 
     // Setters
