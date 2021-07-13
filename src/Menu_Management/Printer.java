@@ -1,3 +1,8 @@
+package Menu_Management;
+
+import Battle_Features.Battle;
+import Character_Settings.Party;
+
 public class Printer {
     public static void printEmptyLines(int n) {
         for (int i = 0; i < n; i++) {
@@ -13,7 +18,7 @@ public class Printer {
         System.out.println("MUGGLES AGAINST MAGIC\nby TheCleanCoders");
     }
 
-    // Non-void methods in this class either return calls to methods in Answer class OR get called as arguments by Answer.takeMenuOption() in which case they return numbers of options in the menu they print
+    // Non-void methods in this class either return calls to methods in Menu_Management.Answer class OR get called as arguments by Menu_Management.Answer.takeMenuOption() in which case they return numbers of options in the menu they print
     
     public static int printMainMenu() {
         printUpperLine();
@@ -24,7 +29,7 @@ public class Printer {
         printEmptyLines(2);
         System.out.println("For the best experience resize your terminal so it fits 15 lines");
         printEmptyLines(1);
-        System.out.println("Main menu");
+        System.out.println("Main.Main menu");
         printEmptyLines(1);
         System.out.println("1 : Play new game");
         System.out.println("2 : Exit");
@@ -103,7 +108,7 @@ public class Printer {
         printEmptyLines(6);
         System.out.println("Choose type of the new character in team " + party.getName() + "\n");
         System.out.println("1 : Muggle");
-        System.out.println("2 : Wizard");
+        System.out.println("2 : Character_Settings.Wizard");
         //Return size of menu
         return 2;
     }
@@ -112,7 +117,7 @@ public class Printer {
         printUpperLine();
         printGameName();
         printEmptyLines(8);
-        System.out.println("\nPlease enter name of the new " + type + "in team " + party.getName());
+        System.out.println("\nPlease enter name of the new " + type + " in team " + party.getName());
         return Answer.takeString();
     }
 

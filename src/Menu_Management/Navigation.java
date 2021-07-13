@@ -1,3 +1,9 @@
+package Menu_Management;
+
+import Battle_Features.Battle;
+import Character_Settings.*;
+import Character_Settings.Character;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

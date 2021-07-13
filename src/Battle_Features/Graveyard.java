@@ -1,3 +1,7 @@
+package Battle_Features;
+
+import Character_Settings.Character;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,7 @@ public class Graveyard {
     }
 
     public String toString() {
-        return "✝✝✝✝ Graveyard ✝✝✝✝" + '\n' +
+        return "___ Graveyard ___" + '\n' +
                 "Team 1: " + graveyard1 + '\n' +
                 "Team 2: " + graveyard2 + '\n';
     }
