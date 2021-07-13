@@ -88,3 +88,5 @@ To navigate through the menu enter a number set for the desired option and press
 ## Authors
 
 **TheCleanCoders**: Vitaliano Costa, Mara Fernández, Joao Lopes, Natalia Norberciak, Katarzyna Wąsik.
+![CleanCodersLogo.JPG](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/main/img/CleanCodersLogo.JPG)
+
