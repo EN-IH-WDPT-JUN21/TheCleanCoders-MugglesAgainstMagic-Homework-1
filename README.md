@@ -72,6 +72,10 @@ To navigate through the menu enter a number set for the desired option and press
 
 ![menuflowchart.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/main/img/menuflowchart.png)
 
+## UML Class Diagram
+
+![MugglesAgainstMagicClassDiagram.jpeg](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/main/img/MugglesAgainstMagicClassDiagram.jpeg)
+
 ## Screenshots
 
 ![screenshot1.png](https://github.com/EN-IH-WDPT-JUN21/TheCleanCoders-MugglesAgainstMagic-Homework-1/blob/main/img/screenshot1.png)
