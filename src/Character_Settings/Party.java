@@ -21,7 +21,7 @@ public class Party {
     }
 
     public List<Character> generateRandomCharacterList(int partySize, Name randomNameDatabase) {
-        //Creates an ArrayList that accepts both Character_Settings.Warrior and Character_Settings.Wizard objects
+        //Creates an ArrayList that accepts both Warrior and Wizard objects
         List<Character> characterList = new ArrayList<>();
 
         //The following populates the ArrayList with as random elements as the party size
