@@ -18,11 +18,11 @@ cd your_path_to_project/theCleanCoders-MugglesAgainstMagic-Homework-1
 ```
 3. Compile the source files
 ```
-javac src/*.java -d .
+javac src/Battle_Features/*.java src/Character_Settings/*.java src/Interface/*.java src/Main/*.java src/Menu_Management/*.java -d .
 ```
 4. Run the program
 ```
-java Main.Main
+java src/Main/Main.java
 ```
 
 ### Run the game through an IDE
