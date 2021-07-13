@@ -1,3 +1,10 @@
+package Menu_Management;
+
+import Character_Settings.Character;
+import Character_Settings.Party;
+import Character_Settings.Warrior;
+import Character_Settings.Wizard;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -45,12 +52,12 @@ public class ImportExport {
         int hp = Integer.parseInt(valuesList.get(1));
         Character newCharacter = null;
 
-        if (className.equals("Wizard")) {
+        if (className.equals("Character_Settings.Wizard")) {
             int mana = Integer.parseInt(valuesList.get(3));
             int intelligence = Integer.parseInt(valuesList.get(4));
 
             newCharacter = new Wizard(name, hp, mana, intelligence);
-        } else if (className.equals("Warrior")) {
+        } else if (className.equals("Character_Settings.Warrior")) {
             int stamina = Integer.parseInt(valuesList.get(3));
             int strength = Integer.parseInt(valuesList.get(4));
 
@@ -81,11 +88,11 @@ public class ImportExport {
         characterString.append(character.getHp()).append(",");
 
         if (character instanceof Wizard) {
-            characterString.append("Wizard,");
+            characterString.append("Character_Settings.Wizard,");
             characterString.append(((Wizard) character).getMana()).append(",");
             characterString.append(((Wizard) character).getIntelligence()).append(",");
         } else if (character instanceof Warrior) {
-            characterString.append("Warrior,");
+            characterString.append("Character_Settings.Warrior,");
             characterString.append(((Warrior) character).getStamina()).append(",");
             characterString.append(((Warrior) character).getStrength()).append(",");
         }

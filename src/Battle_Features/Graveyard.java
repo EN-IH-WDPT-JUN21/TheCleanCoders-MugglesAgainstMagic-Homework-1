@@ -1,3 +1,7 @@
+package Battle_Features;
+
+import Character_Settings.Character;
+
 import java.util.ArrayList;
 import java.util.List;
 

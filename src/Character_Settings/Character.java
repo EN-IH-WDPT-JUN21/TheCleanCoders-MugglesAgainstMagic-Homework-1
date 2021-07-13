@@ -1,3 +1,7 @@
+package Character_Settings;
+
+import Interface.Attacker;
+
 import java.util.List;
 
 public abstract class Character implements Attacker {

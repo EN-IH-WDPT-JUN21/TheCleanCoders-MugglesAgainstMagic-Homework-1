@@ -1,3 +1,5 @@
+package Character_Settings;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -5,7 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Name {
-    // Empty ArrayLists that will be filled with the contents of the text files when Name object is instantiated
+    // Empty ArrayLists that will be filled with the contents of the text files when Character_Settings.Name object is instantiated
     private final ArrayList<String> namesArray = new ArrayList<>();
     private final ArrayList<String> surnamesArray = new ArrayList<>();
 

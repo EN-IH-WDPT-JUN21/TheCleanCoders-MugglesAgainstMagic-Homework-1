@@ -1,6 +1,9 @@
+package Character_Settings;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.jar.Attributes;
 
 public class Party {
 
@@ -9,7 +12,7 @@ public class Party {
     private String name;
     private int partySize;
     private List<Character> aliveCharacters;
-    final static int MAX_SIZE = 7;
+    public final static int MAX_SIZE = 7;
 
     //Constructor
 
@@ -18,7 +21,7 @@ public class Party {
     }
 
     public List<Character> generateRandomCharacterList(int partySize, Name randomNameDatabase) {
-        //Creates an ArrayList that accepts both Warrior and Wizard objects
+        //Creates an ArrayList that accepts both Character_Settings.Warrior and Character_Settings.Wizard objects
         List<Character> characterList = new ArrayList<>();
 
         //The following populates the ArrayList with as random elements as the party size

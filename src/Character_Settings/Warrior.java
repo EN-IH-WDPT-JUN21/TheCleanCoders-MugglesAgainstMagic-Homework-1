@@ -1,3 +1,7 @@
+package Character_Settings;
+
+import Interface.Attacker;
+
 public class Warrior extends Character implements Attacker {
     private int stamina;
     private int strength;

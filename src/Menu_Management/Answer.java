@@ -1,8 +1,12 @@
+package Menu_Management;
+
+import Character_Settings.Party;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Answer {
-    protected static Scanner scan = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
 
     public static int takeMenuOption(int menuSize) {
         int choice = 0;

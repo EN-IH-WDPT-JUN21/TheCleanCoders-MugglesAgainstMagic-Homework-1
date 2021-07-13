@@ -1,3 +1,8 @@
+package Battle_Features;
+
+import Character_Settings.Character;
+import Character_Settings.Party;
+
 import java.util.List;
 
 public class Battle {
@@ -46,6 +51,8 @@ public class Battle {
             if (combatant1.getHp() > 0 && combatant2.getHp() > 0) {
                 System.out.println(combatant1);
                 System.out.println(combatant2);
+            } else if (combatant1.getHp() <= 0 && combatant2.getHp() <= 0) {
+                System.out.println("");
             } else if (combatant1.getHp() <= 0) {
                 System.out.println(combatant1.getName() + " died!");
             } else if (combatant2.getHp() <= 0) {

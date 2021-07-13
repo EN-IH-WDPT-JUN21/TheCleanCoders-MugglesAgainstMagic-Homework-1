@@ -1,3 +1,8 @@
+package Main;
+
+import Menu_Management.Answer;
+import Menu_Management.Navigation;
+
 import java.io.IOException;
 
 public class Main {
